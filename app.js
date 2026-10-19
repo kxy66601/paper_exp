@@ -59,12 +59,11 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    const margin = 20;
-    const availW = window.innerWidth - margin;
-    const availH = window.innerHeight - margin;
+    const availW = window.innerWidth;
+    const availH = window.innerHeight;
     const scaleX = availW / 1512;
     const scaleY = availH / 982;
-    currentScale = Math.min(scaleX, scaleY, 1.1); // don't upscale beyond 1.1x
+    currentScale = Math.max(scaleX, scaleY);
 
     applyCanvasTransform(smooth);
   }
@@ -164,7 +163,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     document.body.classList.add('is-screen-panning');
-    if (viewportWrapper) viewportWrapper.setPointerCapture(e.pointerId);
     e.preventDefault();
   }
 
@@ -184,75 +182,70 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function handleScreenPanEnd(e) {
+  function handleScreenPanEnd() {
     if (!isScreenPanning) return;
     isScreenPanning = false;
     document.body.classList.remove('is-screen-panning');
-    try {
-      if (viewportWrapper) viewportWrapper.releasePointerCapture(e.pointerId);
-    } catch (_) {}
   }
 
-  if (viewportWrapper) {
-    viewportWrapper.addEventListener('pointerdown', handleScreenPanStart);
-    viewportWrapper.addEventListener('pointermove', handleScreenPanMove);
-    viewportWrapper.addEventListener('pointerup', handleScreenPanEnd);
-    viewportWrapper.addEventListener('pointercancel', handleScreenPanEnd);
+  window.addEventListener('pointerdown', handleScreenPanStart);
+  window.addEventListener('pointermove', handleScreenPanMove);
+  window.addEventListener('pointerup', handleScreenPanEnd);
+  window.addEventListener('pointercancel', handleScreenPanEnd);
 
-    // Trackpad 2-finger pan & pinch zoom
-    viewportWrapper.addEventListener('wheel', (e) => {
-      if (e.target.closest('#user-share-flow-overlay .paper-modal') || e.target.closest('#connection-dialog textarea') || e.target.closest('#playful-match-dialog textarea')) {
-        return;
-      }
+  // Trackpad 2-finger pan & pinch zoom
+  window.addEventListener('wheel', (e) => {
+    if (e.target.closest('#user-share-flow-overlay .paper-modal, #connection-dialog textarea, #playful-match-dialog textarea')) {
+      return;
+    }
 
-      e.preventDefault();
+    e.preventDefault();
 
-      if (e.ctrlKey || e.metaKey) {
-        // Pinch zoom
-        const zoomFactor = e.deltaY < 0 ? 1.05 : 0.95;
-        if (currentActiveTab === 'view-redesign') {
-          isPlayfulFit = false;
-          playfulScale = Math.min(Math.max(playfulScale * zoomFactor, 0.3), 2.5);
-          applyPlayfulCanvasTransform(false);
-        } else {
-          isFitMode = false;
-          currentScale = Math.min(Math.max(currentScale * zoomFactor, 0.3), 2.5);
-          applyCanvasTransform(false);
-        }
-      } else {
-        // 2-finger pan
-        if (currentActiveTab === 'view-redesign') {
-          playfulPanX -= e.deltaX;
-          playfulPanY -= e.deltaY;
-          applyPlayfulCanvasTransform(false);
-        } else {
-          panX -= e.deltaX;
-          panY -= e.deltaY;
-          applyCanvasTransform(false);
-        }
-      }
-    }, { passive: false });
-
-    // Double-click to re-center
-    viewportWrapper.addEventListener('dblclick', (e) => {
-      if (e.target.closest('.network-card, .tarot-commuter-card, .playful-card, .bottom-dock-bar, .canvas-controls, .top-nav-switcher, #connection-dialog, #playful-match-dialog, #user-share-flow-overlay, button, input, textarea')) {
-        return;
-      }
+    if (e.ctrlKey || e.metaKey) {
+      // Pinch zoom
+      const zoomFactor = e.deltaY < 0 ? 1.05 : 0.95;
       if (currentActiveTab === 'view-redesign') {
-        playfulPanX = 0;
-        playfulPanY = 0;
-        isPlayfulFit = true;
-        updatePlayfulCanvasScale(true);
-        showToast('Canvas view re-centered');
+        isPlayfulFit = false;
+        playfulScale = Math.min(Math.max(playfulScale * zoomFactor, 0.3), 2.5);
+        applyPlayfulCanvasTransform(false);
       } else {
-        panX = 0;
-        panY = 0;
-        isFitMode = true;
-        updateCanvasScale(true);
-        showToast('Canvas view re-centered');
+        isFitMode = false;
+        currentScale = Math.min(Math.max(currentScale * zoomFactor, 0.3), 2.5);
+        applyCanvasTransform(false);
       }
-    });
-  }
+    } else {
+      // 2-finger pan
+      if (currentActiveTab === 'view-redesign') {
+        playfulPanX -= e.deltaX;
+        playfulPanY -= e.deltaY;
+        applyPlayfulCanvasTransform(false);
+      } else {
+        panX -= e.deltaX;
+        panY -= e.deltaY;
+        applyCanvasTransform(false);
+      }
+    }
+  }, { passive: false });
+
+  // Double-click to re-center
+  window.addEventListener('dblclick', (e) => {
+    if (e.target.closest('.network-card, .tarot-commuter-card, .playful-card, .bottom-dock-bar, .canvas-controls, .top-nav-switcher, #connection-dialog, #playful-match-dialog, #user-share-flow-overlay, button, input, textarea')) {
+      return;
+    }
+    if (currentActiveTab === 'view-redesign') {
+      playfulPanX = 0;
+      playfulPanY = 0;
+      isPlayfulFit = true;
+      updatePlayfulCanvasScale(true);
+      showToast('Canvas view re-centered');
+    } else {
+      panX = 0;
+      panY = 0;
+      isFitMode = true;
+      updateCanvasScale(true);
+      showToast('Canvas view re-centered');
+    }
+  });
 
   // Card Selection & Drag Engine
   let activeDragCard = null;
@@ -764,6 +757,7 @@ document.addEventListener('DOMContentLoaded', () => {
   tabButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const targetId = btn.dataset.tab;
+      currentActiveTab = targetId;
 
       tabButtons.forEach(b => {
         b.classList.remove('active');
@@ -818,6 +812,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnShuffleTarot = document.getElementById('btn-shuffle-tarot');
   const btnResetPlayful = document.getElementById('btn-reset-playful');
   const btnPlayfulFit = document.getElementById('btn-playful-fit');
+  const btnPlayfulZoomIn = document.getElementById('btn-playful-zoom-in');
+  const btnPlayfulZoomOut = document.getElementById('btn-playful-zoom-out');
+  const btnPlayfulPanReset = document.getElementById('btn-reset-playful-pan');
 
   let platonicCount = 1;
   let romanticCount = 1;
@@ -833,38 +830,69 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Playful Scale Management
+  // Playful Scale & Pan Management
   let playfulScale = 1;
   let isPlayfulFit = true;
+  let playfulPanX = 0;
+  let playfulPanY = 0;
 
-  function updatePlayfulCanvasScale() {
+  function applyPlayfulCanvasTransform(smooth = false) {
     if (!playfulCanvas) return;
-    if (!isPlayfulFit) {
-      playfulScale = 1;
-      playfulCanvas.style.transform = 'scale(1)';
-      return;
+    if (smooth) {
+      playfulCanvas.style.transition = 'transform 0.25s cubic-bezier(0.2, 0.9, 0.3, 1)';
+    } else {
+      playfulCanvas.style.transition = 'none';
     }
-    const margin = 20;
-    const availW = window.innerWidth - margin;
-    const availH = window.innerHeight - margin;
-    const scaleX = availW / 1512;
-    const scaleY = availH / 982;
-    playfulScale = Math.min(scaleX, scaleY, 1.1);
-    playfulCanvas.style.transform = `scale(${playfulScale})`;
+    playfulCanvas.style.transform = `translate(${playfulPanX}px, ${playfulPanY}px) scale(${playfulScale})`;
   }
 
-  window.addEventListener('resize', () => {
-    updateCanvasScale();
-    updatePlayfulCanvasScale();
-  });
-  updatePlayfulCanvasScale();
+  function updatePlayfulCanvasScale(smooth = true) {
+    if (!playfulCanvas) return;
+    if (!isPlayfulFit) {
+      applyPlayfulCanvasTransform(smooth);
+      return;
+    }
+    const availW = window.innerWidth;
+    const availH = window.innerHeight;
+    const scaleX = availW / 1512;
+    const scaleY = availH / 982;
+    playfulScale = Math.max(scaleX, scaleY);
+    applyPlayfulCanvasTransform(smooth);
+  }
+
+  if (btnPlayfulZoomIn) {
+    btnPlayfulZoomIn.addEventListener('click', () => {
+      isPlayfulFit = false;
+      playfulScale = Math.min(2.5, playfulScale * 1.2);
+      applyPlayfulCanvasTransform(true);
+      showToast(`Zoom: ${Math.round(playfulScale * 100)}%`);
+    });
+  }
+  if (btnPlayfulZoomOut) {
+    btnPlayfulZoomOut.addEventListener('click', () => {
+      isPlayfulFit = false;
+      playfulScale = Math.max(0.3, playfulScale / 1.2);
+      applyPlayfulCanvasTransform(true);
+      showToast(`Zoom: ${Math.round(playfulScale * 100)}%`);
+    });
+  }
+  if (btnPlayfulPanReset) {
+    btnPlayfulPanReset.addEventListener('click', () => {
+      playfulPanX = 0;
+      playfulPanY = 0;
+      isPlayfulFit = true;
+      updatePlayfulCanvasScale(true);
+      showToast('Playful canvas view reset');
+    });
+  }
 
   if (btnPlayfulFit) {
     btnPlayfulFit.addEventListener('click', () => {
-      isPlayfulFit = !isPlayfulFit;
-      btnPlayfulFit.textContent = isPlayfulFit ? 'Fit' : '100%';
-      updatePlayfulCanvasScale();
-      showToast(isPlayfulFit ? 'Fit to screen enabled' : '100% scale mode');
+      isPlayfulFit = true;
+      playfulPanX = 0;
+      playfulPanY = 0;
+      updatePlayfulCanvasScale(true);
+      showToast('Playful canvas fitted to screen');
     });
   }
 
@@ -908,6 +936,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   playfulCards.forEach(card => {
     card.addEventListener('pointerdown', (e) => {
+      if (isSpacePressed || e.button === 1) return;
       if (e.target.closest('button') || e.target.closest('input') || e.target.closest('textarea')) return;
 
       playfulCards.forEach(c => c.classList.remove('is-active'));
@@ -928,6 +957,7 @@ document.addEventListener('DOMContentLoaded', () => {
       playfulDragOffset.y = pointerY - cardTop;
 
       e.preventDefault();
+      e.stopPropagation();
     });
 
     card.addEventListener('pointermove', (e) => {
@@ -1294,6 +1324,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Reset Playful Board
   if (btnResetPlayful) {
     btnResetPlayful.addEventListener('click', () => {
+      playfulPanX = 0;
+      playfulPanY = 0;
+      isPlayfulFit = true;
+      updatePlayfulCanvasScale(true);
       playfulCards.forEach(card => {
         const pos = initialPlayfulPositions.get(card.id);
         if (pos) {

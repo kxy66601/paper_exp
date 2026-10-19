@@ -29,7 +29,7 @@ html, body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: #D4CECE;
+  background-color: var(--canvas-bg);
   font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -45,7 +45,7 @@ html, body {
   justify-content: center;
   position: relative;
   overflow: hidden;
-  background: radial-gradient(circle at center, #EFE9E9 0%, #D8D2D2 100%);
+  background-color: var(--canvas-bg);
   cursor: grab;
 }
 
@@ -55,10 +55,10 @@ html, body {
   height: 982px;
   min-width: 1512px;
   min-height: 982px;
-  background-color: var(--canvas-bg);
+  background-color: transparent;
   position: relative;
   overflow: visible;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+  box-shadow: none;
   transform-origin: center center;
   will-change: transform;
   cursor: grab;
@@ -111,7 +111,7 @@ body.space-pan-active.is-screen-panning * {
   white-space: nowrap;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
   z-index: 25;
-  pointer-events: auto;
+  pointer-events: none;
   cursor: grab;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
@@ -601,10 +601,10 @@ body.space-pan-active.is-screen-panning * {
 }
 
 .playful-canvas {
-  background-color: #FAF7F2;
+  background-color: transparent;
   position: relative;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(80, 60, 40, 0.12);
+  overflow: visible;
+  box-shadow: none;
   font-family: "Plus Jakarta Sans", "Roboto", sans-serif;
 }
 
@@ -796,6 +796,7 @@ body.space-pan-active.is-screen-panning * {
   box-shadow: 0 3px 0 #2B2824, 0 8px 20px rgba(0, 0, 0, 0.1);
   border: 2px solid #2B2824;
   z-index: 25;
+  pointer-events: none;
   cursor: grab;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
   white-space: nowrap;
