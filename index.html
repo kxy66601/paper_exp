@@ -3,401 +3,858 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Google payments center - Subscriptions & services</title>
+  <title>Connections — Social Network</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Flex:wght@400;500;600;700&family=Roboto:wght@400;500&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=ADLaM+Display&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Fredoka:wght@400;500;600;700&family=League+Gothic&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Top Navigation Bar -->
-  <header class="g-header">
-    <div class="g-header-top">
-      <div class="g-brand">
-        <svg class="g-logo" viewBox="0 0 71.04 22.72" width="71.04" height="22.72" xmlns="http://www.w3.org/2000/svg">
-          <path d="M9.020 17.624C4.104 17.661 0.078 13.728 0.000 8.813C0.078 3.897 4.104 -0.036 9.020 0.001C11.287 -0.037 13.473 0.840 15.086 2.434C15.086 2.434 13.383 4.128 13.383 4.128C12.210 3.005 10.643 2.387 9.020 2.405C7.325 2.403 5.699 3.079 4.506 4.282C3.313 5.486 2.651 7.118 2.669 8.813C2.651 10.507 3.313 12.139 4.506 13.343C5.699 14.547 7.325 15.223 9.020 15.220C10.692 15.289 12.315 14.646 13.487 13.450C14.259 12.617 14.723 11.545 14.802 10.412C14.802 10.412 9.020 10.412 9.020 10.412C9.020 10.412 9.020 8.018 9.020 8.018C9.020 8.018 17.159 8.018 17.159 8.018C17.248 8.514 17.289 9.018 17.282 9.522C17.364 11.617 16.612 13.660 15.190 15.201C13.573 16.851 11.328 17.732 9.020 17.624Z" fill="#4285F4" />
-          <path transform="matrix(1 0 0 1 18.631 6.093)" d="M8.499 10.913C10.272 9.857 11.324 7.914 11.239 5.852C11.324 3.791 10.272 1.848 8.499 0.792C6.726 -0.264 4.517 -0.264 2.745 0.792C0.972 1.848 -0.080 3.791 0.005 5.852C-0.080 7.914 0.972 9.857 2.745 10.913C4.517 11.969 6.726 11.969 8.499 10.913ZM7.282 2.904C8.298 3.526 8.880 4.665 8.788 5.852C8.880 7.040 8.298 8.179 7.282 8.801C6.266 9.423 4.987 9.423 3.971 8.801C2.955 8.179 2.373 7.040 2.465 5.852C2.373 4.665 2.955 3.526 3.971 2.904C4.987 2.282 6.266 2.282 7.282 2.904Z" fill="#EA4335" />
-          <path transform="matrix(1 0 0 1 31.228 6.093)" d="M8.499 10.913C10.272 9.857 11.324 7.914 11.239 5.852C11.324 3.791 10.272 1.848 8.499 0.792C6.726 -0.264 4.517 -0.264 2.745 0.792C0.972 1.848 -0.080 3.791 0.005 5.852C-0.080 7.914 0.972 9.857 2.745 10.913C4.517 11.969 6.726 11.969 8.499 10.913ZM7.293 2.858C8.317 3.493 8.892 4.653 8.778 5.852C8.892 7.052 8.317 8.212 7.293 8.847C6.269 9.482 4.975 9.482 3.951 8.847C2.927 8.212 2.352 7.052 2.466 5.852C2.352 4.653 2.927 3.493 3.951 2.858C4.975 2.223 6.269 2.223 7.293 2.858Z" fill="#FBBC04" />
-          <path transform="matrix(1 0 0 1 43.574 6.229)" d="M11.168 10.581L11.168 0.398L8.792 0.398L8.792 1.344L8.707 1.344C7.940 0.479 6.835 -0.011 5.679 0.000C2.542 0.000 0.000 2.543 0.000 5.679C0.000 8.815 2.542 11.358 5.679 11.358C6.818 11.383 7.912 10.913 8.679 10.070L8.764 10.070L8.764 10.884C8.764 13.052 7.609 14.216 5.717 14.216C4.448 14.176 3.328 13.377 2.877 12.190L0.700 13.137C1.542 15.178 3.538 16.503 5.745 16.487C8.679 16.487 11.168 14.765 11.168 10.581ZM8.963 5.750C9.032 4.886 8.749 4.031 8.177 3.379C7.605 2.727 6.792 2.334 5.925 2.291C5.041 2.320 4.206 2.703 3.608 3.355C3.010 4.007 2.699 4.871 2.745 5.755C2.704 6.632 3.018 7.489 3.616 8.132C4.215 8.775 5.047 9.149 5.925 9.171C6.789 9.138 7.602 8.753 8.175 8.107C8.748 7.461 9.032 6.610 8.963 5.750Z" fill="#4285F4" />
-          <path transform="matrix(1 0 0 1 56.626 0.607)" d="M2.499 0.000C2.499 0.000 2.499 16.676 2.499 16.676C2.499 16.676 0.000 16.676 0.000 16.676C0.000 16.676 0.000 0.000 0.000 0.000C0.000 0.000 2.499 0.000 2.499 0.000Z" fill="#34A853" />
-          <path transform="matrix(1 0 0 1 60.59 6.307)" d="M10.327 8.837L8.377 7.512C7.786 8.489 6.727 9.085 5.585 9.083C4.398 9.128 3.304 8.446 2.821 7.361L10.450 4.266L10.194 3.613C9.374 1.086 6.789 -0.423 4.186 0.105C1.583 0.633 -0.210 3.030 0.020 5.676C-0.030 7.179 0.538 8.636 1.592 9.709C2.645 10.782 4.091 11.376 5.594 11.355C7.493 11.360 9.269 10.415 10.327 8.837ZM7.497 3.367L2.405 5.468C2.366 4.642 2.658 3.835 3.216 3.224C3.773 2.613 4.551 2.249 5.377 2.212C6.250 2.144 7.080 2.597 7.497 3.367Z" fill="#EA4335" />
-        </svg>
-        <span class="g-brand-title">payments center</span>
-      </div>
-      <div class="g-header-controls">
-        <button class="icon-btn" aria-label="Notifications" title="Notifications">
-          <span class="material-symbols-outlined">notifications</span>
-        </button>
-        <div class="g-account-selector" role="button" tabindex="0">
-          <span class="g-account-name">MetaVision Media LLC</span>
-          <span class="material-symbols-outlined drop-arrow">arrow_drop_down</span>
-        </div>
-        <button class="icon-btn" aria-label="Help" title="Help">
-          <span class="material-symbols-outlined">help_outline</span>
-        </button>
-        <button class="icon-btn" aria-label="Google apps" title="Google apps">
-          <span class="material-symbols-outlined">apps</span>
-        </button>
-        <div class="user-avatar" title="Account profile">
-          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Avatar">
-        </div>
-      </div>
-    </div>
-
-    <!-- Navigation Tabs -->
-    <nav class="g-nav-tabs">
-      <a href="#statement" class="nav-tab">Statement of account</a>
-      <a href="#payments" class="nav-tab">Payments</a>
-      <a href="#activity" class="nav-tab">Activity</a>
-      <a href="#payment-methods" class="nav-tab">Payment methods</a>
-      <a href="#subscriptions" class="nav-tab active">
-        Subscriptions & services
-        <span class="tab-indicator"></span>
-      </a>
-      <a href="#tax-legal" class="nav-tab">Tax & legal documents</a>
-      <a href="#settings" class="nav-tab">Settings</a>
+  <!-- Global Top Tab Switcher -->
+  <header class="app-header">
+    <nav class="top-nav-switcher" role="tablist" aria-label="Views">
+      <button class="nav-tab-btn active" id="tab-canvas-btn" role="tab" aria-selected="true" data-tab="view-canvas">
+        <span class="tab-indicator-dot"></span> Canvas (Original)
+      </button>
+      <button class="nav-tab-btn" id="tab-redesign-btn" role="tab" aria-selected="false" data-tab="view-redesign">
+        <span class="tab-indicator-dot playful-dot"></span> Playful Matchmaker 💖☕
+      </button>
     </nav>
   </header>
 
-  <!-- Main Container -->
-  <main class="page-container">
-    <!-- Page Header -->
-    <section class="page-header">
-      <div class="page-header-left">
-        <button class="icon-btn back-btn" aria-label="Back">
-          <span class="material-symbols-outlined">arrow_back</span>
-        </button>
-        <div class="service-identity">
-          <div class="service-icon">
-            <svg viewBox="0 0 24 24" width="28" height="28">
-              <path fill="#4285F4" d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/>
-            </svg>
-          </div>
-          <div class="service-text">
-            <h1 class="service-title">Google Cloud Computing</h1>
-            <p class="service-id">8490-8826-6114</p>
-          </div>
-        </div>
-      </div>
-      <div class="status-pill">
-        <span class="status-dot"></span>
-        Active subscription
-      </div>
-    </section>
+  <!-- Main Viewport Container -->
+  <div class="viewport-wrapper">
+    
+    <!-- ========================================================
+         TAB 1: ORIGINAL 1G-0 CANVAS VIEW
+         ======================================================== -->
+    <div class="tab-panel active" id="view-canvas" role="tabpanel">
+      <!-- Main 1512x982 Artboard Canvas -->
+      <main class="artboard-canvas" id="canvas-1G-0">
+        
+        <!-- Static / Dynamic Connection SVG Layer -->
+        <svg id="connections-svg-layer" class="connections-layer" viewBox="0 0 1512 982" preserveAspectRatio="none">
+          <defs>
+            <filter id="arc-shadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="4" stdDeviation="1" flood-color="#8FBFD5" />
+            </filter>
+          </defs>
 
-    <!-- Dashboard Content Grid -->
-    <div class="dashboard-grid">
-      <!-- Left Column (8 of 12) -->
-      <div class="grid-col-left">
-        <!-- Current Balance Card -->
-        <div class="card balance-card">
-          <div class="card-header-clean">
-            <h2 class="card-title">Current balance</h2>
-          </div>
-          <div class="balance-content">
-            <div class="balance-info">
-              <div class="amount-display">
-                <span class="currency">$</span>
-                <span class="integer">984</span>
-                <span class="cents">.10</span>
-              </div>
-              <div class="progress-container">
-                <div class="progress-bar-fill" style="width: 49.2%;"></div>
-              </div>
-              <div class="limit-status">
-                <span class="percent-badge">49%</span>
-                <span class="limit-text">used of $2,000.00 credit limit.</span>
-                <a href="#calculate-modal" class="inline-link" id="btn-calc">See how this is calculated.</a>
-              </div>
-            </div>
-            <div class="balance-action">
-              <button class="primary-btn" id="btn-make-payment">Make a payment</button>
-            </div>
-          </div>
+          <!-- Ellipse 3 (Left Circle connecting Jackie & Claire) -->
+          <g id="circle-left-group">
+            <circle id="ellipse-3" cx="505" cy="320" r="182" fill="none" stroke="#4299E1" stroke-width="2" filter="url(#arc-shadow)" />
+          </g>
+
+          <!-- Ellipse 4 (Right Circle connecting Claire to top-right Claire) -->
+          <g id="circle-right-group">
+            <circle id="ellipse-4" cx="1202.5" cy="230.5" r="100" fill="none" stroke="#4299E1" stroke-width="1" />
+          </g>
+
+          <!-- Dynamic Connection Lines between cards -->
+          <g id="dynamic-connections"></g>
+        </svg>
+
+        <!-- Connection Badges & Pills -->
+        <div id="badge-shared-space" class="connection-badge pill-shared-space" style="left: 470px; top: 163px;">
+          <span class="badge-prefix">&lt;&gt;</span> shared space at West 4th St • Line A
         </div>
 
-        <!-- Payment Method Card Group -->
-        <div class="card-group">
-          <div class="card inner-padded">
-            <div class="card-header-clean">
-              <h2 class="card-title">Payment method</h2>
-            </div>
-            <div class="payment-methods-grid">
-              <!-- Primary Card -->
-              <div class="pm-slot">
-                <span class="slot-label">Primary</span>
-                <div class="pm-card">
-                  <div class="pm-card-chip chase-chip">
-                    <svg viewBox="0 0 36 24" width="36" height="24">
-                      <rect width="36" height="24" rx="3" fill="#113559"/>
-                      <path d="M18 6L23 12L18 18L13 12Z" fill="#2DA0E2"/>
-                    </svg>
-                  </div>
-                  <div class="pm-card-details">
-                    <div class="pm-card-name" title="Chase Sapphire Reserve® •••• 1234">Chase Sapphire Reserve® •••• 1234</div>
-                    <div class="pm-card-sub">Expires 11/26</div>
-                  </div>
-                  <button class="icon-btn-subtle" aria-label="Options">
-                    <span class="material-symbols-outlined">more_vert</span>
-                  </button>
-                </div>
-              </div>
-
-              <!-- Backup Card -->
-              <div class="pm-slot">
-                <span class="slot-label">Backup</span>
-                <div class="pm-card">
-                  <div class="pm-card-chip capone-chip">
-                    <svg viewBox="0 0 36 24" width="36" height="24">
-                      <rect width="36" height="24" rx="3" fill="#D02626"/>
-                      <path d="M6 16C12 8 24 8 30 16" stroke="#FFFFFF" stroke-width="2.5" fill="none"/>
-                    </svg>
-                  </div>
-                  <div class="pm-card-details">
-                    <div class="pm-card-name" title="Capital One Quicksilver O... •••• 2847">Capital One Quicksilver O... •••• 2847</div>
-                    <div class="pm-card-sub">Expires 11/26</div>
-                  </div>
-                  <button class="icon-btn-subtle" aria-label="Options">
-                    <span class="material-symbols-outlined">more_vert</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <button class="card-action-bar">
-            <span>Manage payment methods</span>
-            <span class="material-symbols-outlined">chevron_right</span>
-          </button>
+        <div id="badge-madison-square" class="connection-badge pill-madison" style="left: 1040px; top: 123px;">
+          <span class="badge-prefix">&lt;&gt;</span> Madison Square &amp; Flatiron
         </div>
 
-        <!-- Billing History Card -->
-        <div class="card-group">
-          <div class="card inner-padded">
-            <div class="billing-header">
-              <h2 class="card-title">Billing history</h2>
-              <div class="billing-filters">
-                <div class="search-pill">
-                  <span class="material-symbols-outlined">search</span>
-                  <input type="text" placeholder="Search" id="history-search" aria-label="Search billing history">
-                </div>
-                <div class="dropdown-filter" id="filter-type">
-                  <span>Type: All</span>
-                  <span class="material-symbols-outlined">arrow_drop_down</span>
-                </div>
-                <div class="dropdown-filter" id="filter-year">
-                  <span>2026</span>
-                  <span class="material-symbols-outlined">arrow_drop_down</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Months Accordion List -->
-            <div class="accordion-list" id="billing-accordion">
-              <div class="accordion-item" data-month="May">
-                <div class="accordion-header">
-                  <span class="material-symbols-outlined expand-icon">keyboard_arrow_down</span>
-                  <span class="month-title">May</span>
-                  <span class="month-amount">$105.00</span>
-                </div>
-                <div class="accordion-content">
-                  <div class="tx-row">
-                    <div class="tx-left">
-                      <span class="tx-date">May 1, 2026 - May 31, 2026</span>
-                      <span class="tx-desc">Compute Engine & Cloud Storage Services</span>
-                    </div>
-                    <div class="tx-right">
-                      <span class="tx-val">$105.00</span>
-                      <a href="#" class="pdf-link">Download PDF</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="accordion-item" data-month="April">
-                <div class="accordion-header">
-                  <span class="material-symbols-outlined expand-icon">keyboard_arrow_down</span>
-                  <span class="month-title">April</span>
-                  <span class="month-amount">$105.00</span>
-                </div>
-                <div class="accordion-content">
-                  <div class="tx-row">
-                    <div class="tx-left">
-                      <span class="tx-date">Apr 1, 2026 - Apr 30, 2026</span>
-                      <span class="tx-desc">Compute Engine Instances (Standard)</span>
-                    </div>
-                    <div class="tx-right">
-                      <span class="tx-val">$105.00</span>
-                      <a href="#" class="pdf-link">Download PDF</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="accordion-item" data-month="March">
-                <div class="accordion-header">
-                  <span class="material-symbols-outlined expand-icon">keyboard_arrow_down</span>
-                  <span class="month-title">March</span>
-                  <span class="month-amount">$105.00</span>
-                </div>
-                <div class="accordion-content">
-                  <div class="tx-row">
-                    <div class="tx-left">
-                      <span class="tx-date">Mar 1, 2026 - Mar 31, 2026</span>
-                      <span class="tx-desc">Google Cloud Platform Infrastructure</span>
-                    </div>
-                    <div class="tx-right">
-                      <span class="tx-val">$105.00</span>
-                      <a href="#" class="pdf-link">Download PDF</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="accordion-item" data-month="February">
-                <div class="accordion-header">
-                  <span class="material-symbols-outlined expand-icon">keyboard_arrow_down</span>
-                  <span class="month-title">February</span>
-                  <span class="month-amount">$105.00</span>
-                </div>
-                <div class="accordion-content">
-                  <div class="tx-row">
-                    <div class="tx-left">
-                      <span class="tx-date">Feb 1, 2026 - Feb 28, 2026</span>
-                      <span class="tx-desc">Kubernetes Engine & Cloud Functions</span>
-                    </div>
-                    <div class="tx-right">
-                      <span class="tx-val">$105.00</span>
-                      <a href="#" class="pdf-link">Download PDF</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="accordion-item" data-month="January">
-                <div class="accordion-header">
-                  <span class="material-symbols-outlined expand-icon">keyboard_arrow_down</span>
-                  <span class="month-title">January</span>
-                  <span class="month-amount">$105.00</span>
-                </div>
-                <div class="accordion-content">
-                  <div class="tx-row">
-                    <div class="tx-left">
-                      <span class="tx-date">Jan 1, 2026 - Jan 31, 2026</span>
-                      <span class="tx-desc">Compute Engine & BigQuery Analytics</span>
-                    </div>
-                    <div class="tx-right">
-                      <span class="tx-val">$105.00</span>
-                      <a href="#" class="pdf-link">Download PDF</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div id="badge-union-square" class="connection-badge pill-shared-space" style="left: 680px; top: 480px;">
+          <span class="badge-prefix">&lt;&gt;</span> shared space at Union Square 14th St
         </div>
-      </div>
 
-      <!-- Right Column (4 of 12) -->
-      <div class="grid-col-right">
-        <!-- Account Details Card -->
-        <div class="card-group">
-          <div class="card inner-padded">
-            <div class="card-header-clean">
-              <h2 class="card-title">Account details</h2>
-            </div>
-            <div class="details-list">
-              <div class="detail-row">
-                <span class="detail-label">Account ID</span>
-                <span class="detail-value mono">3024-0036-1010</span>
+        <!-- Pink Connection Anchor Dots -->
+        <div class="anchor-dot" id="dot-1" style="left: 1194px; top: 127px;" title="Connection Anchor"></div>
+        <div class="anchor-dot" id="dot-2" style="left: 1296px; top: 251px;" title="Connection Anchor"></div>
+        <div class="anchor-dot" id="dot-3" style="left: 347px; top: 410px;" title="Connection Anchor"></div>
+        <div class="anchor-dot" id="dot-4" style="left: 683px; top: 302px;" title="Connection Anchor"></div>
+        <div class="anchor-dot" id="dot-5" style="left: 555px; top: 490px;" title="Connection Anchor"></div>
+
+        <!-- Cards Container -->
+        <div class="cards-layer" id="cards-container">
+          
+          <!-- Card 1: Jackie (Selected with cyan drop-shadow glow) -->
+          <article class="network-card card-jackie is-selected" id="card-1" data-id="card-1" data-author="Jackie" data-topic="reading" style="left: 151px; top: 86px; width: 248px;">
+            <div class="card-inner">
+              <div class="card-top">
+                <h2 class="card-author">Jackie</h2>
+                <p class="card-quote">I tried to get into reading books on transit, looking for something that hooks me!</p>
               </div>
-              <div class="detail-row">
-                <span class="detail-label">Account nickname</span>
-                <span class="detail-value">Google Cloud Computing</span>
-              </div>
-              <div class="detail-row">
-                <span class="detail-label">Document language</span>
-                <div class="detail-value flag-val">
-                  <svg class="us-flag" viewBox="0 0 20 20" width="20" height="20">
-                    <rect y="2.5" width="20" height="15" fill="#F0F0F0" rx="1"/>
-                    <rect y="4.37" width="20" height="1.875" fill="#D80027"/>
-                    <rect y="8.12" width="20" height="1.875" fill="#D80027"/>
-                    <rect y="11.87" width="20" height="1.875" fill="#D80027"/>
-                    <rect y="15.62" width="20" height="1.875" fill="#D80027"/>
-                    <rect y="2.5" width="10" height="8.07" fill="#2E52B2"/>
-                    <circle cx="3" cy="5" r="0.6" fill="#FFFFFF"/>
-                    <circle cx="6.5" cy="5" r="0.6" fill="#FFFFFF"/>
-                    <circle cx="3" cy="8" r="0.6" fill="#FFFFFF"/>
-                    <circle cx="6.5" cy="8" r="0.6" fill="#FFFFFF"/>
+              <div class="card-bottom">
+                <div class="card-location">
+                  <svg class="location-icon" viewBox="0 0 12 15" width="12" height="15" fill="#4299E1">
+                    <path d="M6.000 7.500C6.413 7.500 6.766 7.353 7.059 7.059C7.353 6.766 7.500 6.413 7.500 6.000C7.500 5.587 7.353 5.234 7.059 4.941C6.766 4.647 6.413 4.500 6.000 4.500C5.587 4.500 5.234 4.647 4.941 4.941C4.647 5.234 4.500 5.587 4.500 6.000C4.500 6.413 4.647 6.766 4.941 7.059C5.234 7.353 5.587 7.500 6.000 7.500ZM6.000 15.000C3.987 13.287 2.484 11.697 1.491 10.228C0.497 8.759 0.000 7.400 0.000 6.150C0.000 4.275 0.603 2.781 1.809 1.669C3.016 0.556 4.413 0.000 6.000 0.000C7.587 0.000 8.984 0.556 10.191 1.669C11.397 2.781 12.000 4.275 12.000 6.150C12.000 7.400 11.503 8.759 10.509 10.228C9.516 11.697 8.013 13.287 6.000 15.000Z" />
                   </svg>
-                  <span>English (United States)</span>
+                  <span class="location-text">West 4th St • Line A, 5:20PM</span>
                 </div>
+                <div class="card-social-context">You know Jackie from LinkedIn</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2: Maya (connected to left circle) -->
+          <article class="network-card" id="card-2" data-id="card-2" data-author="Maya" data-topic="coffee" style="left: 308px; top: 413px; width: 248px;">
+            <div class="card-inner">
+              <div class="card-top">
+                <h2 class="card-author">Maya</h2>
+                <p class="card-quote">Looking for cozy café corners near West 4th with great wifi and iced matcha 🍵</p>
+              </div>
+              <div class="card-bottom">
+                <div class="card-location">
+                  <svg class="location-icon" viewBox="0 0 12 15" width="12" height="15" fill="#4299E1">
+                    <path d="M6.000 7.500C6.413 7.500 6.766 7.353 7.059 7.059C7.353 6.766 7.500 6.413 7.500 6.000C7.500 5.587 7.353 5.234 7.059 4.941C6.766 4.647 6.413 4.500 6.000 4.500C5.587 4.500 5.234 4.647 4.941 4.941C4.647 5.234 4.500 5.587 4.500 6.000C4.500 6.413 4.647 6.766 4.941 7.059C5.234 7.353 5.587 7.500 6.000 7.500ZM6.000 15.000C3.987 13.287 2.484 11.697 1.491 10.228C0.497 8.759 0.000 7.400 0.000 6.150C0.000 4.275 0.603 2.781 1.809 1.669C3.016 0.556 4.413 0.000 6.000 0.000C7.587 0.000 8.984 0.556 10.191 1.669C11.397 2.781 12.000 4.275 12.000 6.150C12.000 7.400 11.503 8.759 10.509 10.228C9.516 11.697 8.013 13.287 6.000 15.000Z" />
+                  </svg>
+                  <span class="location-text">Washington Sq • Line A, 5:15PM</span>
+                </div>
+                <div class="card-social-context">Mutual connection with Jackie</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3: Julian (middle right, connected to right circle) -->
+          <article class="network-card" id="card-3" data-id="card-3" data-author="Julian" data-topic="food" style="left: 920px; top: 211px; width: 243px;">
+            <div class="card-inner">
+              <div class="card-top">
+                <h2 class="card-author">Julian</h2>
+                <p class="card-quote">Finished evening jog around the park, craving the best tonkotsu ramen nearby 🍜</p>
+              </div>
+              <div class="card-bottom">
+                <div class="card-location">
+                  <svg class="location-icon" viewBox="0 0 12 15" width="12" height="15" fill="#4299E1">
+                    <path d="M6.000 7.500C6.413 7.500 6.766 7.353 7.059 7.059C7.353 6.766 7.500 6.413 7.500 6.000C7.500 5.587 7.353 5.234 7.059 4.941C6.766 4.647 6.413 4.500 6.000 4.500C5.587 4.500 5.234 4.647 4.941 4.941C4.647 5.234 4.500 5.587 4.500 6.000C4.500 6.413 4.647 6.766 4.941 7.059C5.234 7.353 5.587 7.500 6.000 7.500ZM6.000 15.000C3.987 13.287 2.484 11.697 1.491 10.228C0.497 8.759 0.000 7.400 0.000 6.150C0.000 4.275 0.603 2.781 1.809 1.669C3.016 0.556 4.413 0.000 6.000 0.000C7.587 0.000 8.984 0.556 10.191 1.669C11.397 2.781 12.000 4.275 12.000 6.150C12.000 7.400 11.503 8.759 10.509 10.228C9.516 11.697 8.013 13.287 6.000 15.000Z" />
+                  </svg>
+                  <span class="location-text">23rd St Flatiron, 6:10PM</span>
+                </div>
+                <div class="card-social-context">Commutes via Line N/R</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4: Claire L. (top right, cookies quote) -->
+          <article class="network-card" id="card-4" data-id="card-4" data-author="Claire L." data-topic="cookies" style="left: 1276px; top: 74px; width: 215px;">
+            <div class="card-inner">
+              <div class="card-top">
+                <h2 class="card-author">Claire L.</h2>
+                <p class="card-quote">Today Harris refuses to buy or share his fresh batch of sea-salt cookies : (</p>
+              </div>
+              <div class="card-bottom">
+                <div class="card-location">
+                  <svg class="location-icon" viewBox="0 0 12 15" width="12" height="15" fill="#4299E1">
+                    <path d="M6.000 7.500C6.413 7.500 6.766 7.353 7.059 7.059C7.353 6.766 7.500 6.413 7.500 6.000C7.500 5.587 7.353 5.234 7.059 4.941C6.766 4.647 6.413 4.500 6.000 4.500C5.587 4.500 5.234 4.647 4.941 4.941C4.647 5.234 4.500 5.587 4.500 6.000C4.500 6.413 4.647 6.766 4.941 7.059C5.234 7.353 5.587 7.500 6.000 7.500ZM6.000 15.000C3.987 13.287 2.484 11.697 1.491 10.228C0.497 8.759 0.000 7.400 0.000 6.150C0.000 4.275 0.603 2.781 1.809 1.669C3.016 0.556 4.413 0.000 6.000 0.000C7.587 0.000 8.984 0.556 10.191 1.669C11.397 2.781 12.000 4.275 12.000 6.150C12.000 7.400 11.503 8.759 10.509 10.228C9.516 11.697 8.013 13.287 6.000 15.000Z" />
+                  </svg>
+                  <span class="location-text">Madison Square, 5:45PM</span>
+                </div>
+                <div class="card-social-context">Claire's commuter pal</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 5: Devon (lower left) -->
+          <article class="network-card" id="card-5" data-id="card-5" data-author="Devon" data-topic="music" style="left: 267px; top: 686px; width: 230px;">
+            <div class="card-inner">
+              <div class="card-top">
+                <h2 class="card-author">Devon</h2>
+                <p class="card-quote">Listening to vintage 80s Japanese city pop on repeat during the commute home 🎧</p>
+              </div>
+              <div class="card-bottom">
+                <div class="card-location">
+                  <svg class="location-icon" viewBox="0 0 12 15" width="12" height="15" fill="#4299E1">
+                    <path d="M6.000 7.500C6.413 7.500 6.766 7.353 7.059 7.059C7.353 6.766 7.500 6.413 7.500 6.000C7.500 5.587 7.353 5.234 7.059 4.941C6.766 4.647 6.413 4.500 6.000 4.500C5.587 4.500 5.234 4.647 4.941 4.941C4.647 5.234 4.500 5.587 4.500 6.000C4.500 6.413 4.647 6.766 4.941 7.059C5.234 7.353 5.587 7.500 6.000 7.500ZM6.000 15.000C3.987 13.287 2.484 11.697 1.491 10.228C0.497 8.759 0.000 7.400 0.000 6.150C0.000 4.275 0.603 2.781 1.809 1.669C3.016 0.556 4.413 0.000 6.000 0.000C7.587 0.000 8.984 0.556 10.191 1.669C11.397 2.781 12.000 4.275 12.000 6.150C12.000 7.400 11.503 8.759 10.509 10.228C9.516 11.697 8.013 13.287 6.000 15.000Z" />
+                  </svg>
+                  <span class="location-text">Spring St Line C, 5:35PM</span>
+                </div>
+                <div class="card-social-context">Spotify playlist curator</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 6: Sora (center bottom) -->
+          <article class="network-card" id="card-6" data-id="card-6" data-author="Sora" data-topic="reading" style="left: 726px; top: 530px; width: 275px;">
+            <div class="card-inner">
+              <div class="card-top">
+                <h2 class="card-author">Sora</h2>
+                <p class="card-quote">Spotted someone reading Murakami on the train, wanted to ask what chapter they were on 📖</p>
+              </div>
+              <div class="card-bottom">
+                <div class="card-location">
+                  <svg class="location-icon" viewBox="0 0 12 15" width="12" height="15" fill="#4299E1">
+                    <path d="M6.000 7.500C6.413 7.500 6.766 7.353 7.059 7.059C7.353 6.766 7.500 6.413 7.500 6.000C7.500 5.587 7.353 5.234 7.059 4.941C6.766 4.647 6.413 4.500 6.000 4.500C5.587 4.500 5.234 4.647 4.941 4.941C4.647 5.234 4.500 5.587 4.500 6.000C4.500 6.413 4.647 6.766 4.941 7.059C5.234 7.353 5.587 7.500 6.000 7.500ZM6.000 15.000C3.987 13.287 2.484 11.697 1.491 10.228C0.497 8.759 0.000 7.400 0.000 6.150C0.000 4.275 0.603 2.781 1.809 1.669C3.016 0.556 4.413 0.000 6.000 0.000C7.587 0.000 8.984 0.556 10.191 1.669C11.397 2.781 12.000 4.275 12.000 6.150C12.000 7.400 11.503 8.759 10.509 10.228C9.516 11.697 8.013 13.287 6.000 15.000Z" />
+                  </svg>
+                  <span class="location-text">Union Square 14th St, 5:50PM</span>
+                </div>
+                <div class="card-social-context">Downtown book club host</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 7: Elena (far left bottom) -->
+          <article class="network-card" id="card-7" data-id="card-7" data-author="Elena" data-topic="art" style="left: -15px; top: 801px; width: 220px;">
+            <div class="card-inner">
+              <div class="card-top">
+                <h2 class="card-author">Elena</h2>
+                <p class="card-quote">Hunting for vintage mechanical 35mm cameras and thrift gems this weekend 📷</p>
+              </div>
+              <div class="card-bottom">
+                <div class="card-location">
+                  <svg class="location-icon" viewBox="0 0 12 15" width="12" height="15" fill="#4299E1">
+                    <path d="M6.000 7.500C6.413 7.500 6.766 7.353 7.059 7.059C7.353 6.766 7.500 6.413 7.500 6.000C7.500 5.587 7.353 5.234 7.059 4.941C6.766 4.647 6.413 4.500 6.000 4.500C5.587 4.500 5.234 4.647 4.941 4.941C4.647 5.234 4.500 5.587 4.500 6.000C4.500 6.413 4.647 6.766 4.941 7.059C5.234 7.353 5.587 7.500 6.000 7.500ZM6.000 15.000C3.987 13.287 2.484 11.697 1.491 10.228C0.497 8.759 0.000 7.400 0.000 6.150C0.000 4.275 0.603 2.781 1.809 1.669C3.016 0.556 4.413 0.000 6.000 0.000C7.587 0.000 8.984 0.556 10.191 1.669C11.397 2.781 12.000 4.275 12.000 6.150C12.000 7.400 11.503 8.759 10.509 10.228C9.516 11.697 8.013 13.287 6.000 15.000Z" />
+                  </svg>
+                  <span class="location-text">Canal St Line A, 5:40PM</span>
+                </div>
+                <div class="card-social-context">Street photographer</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 8: Marcus (far left middle) -->
+          <article class="network-card" id="card-8" data-id="card-8" data-author="Marcus" data-topic="art" style="left: -129px; top: 622px; width: 220px;">
+            <div class="card-inner">
+              <div class="card-top">
+                <h2 class="card-author">Marcus</h2>
+                <p class="card-quote">Quick charcoal sketching subway riders. If I glance your way, don't worry it's just art! ✏️</p>
+              </div>
+              <div class="card-bottom">
+                <div class="card-location">
+                  <svg class="location-icon" viewBox="0 0 12 15" width="12" height="15" fill="#4299E1">
+                    <path d="M6.000 7.500C6.413 7.500 6.766 7.353 7.059 7.059C7.353 6.766 7.500 6.413 7.500 6.000C7.500 5.587 7.353 5.234 7.059 4.941C6.766 4.647 6.413 4.500 6.000 4.500C5.587 4.500 5.234 4.647 4.941 4.941C4.647 5.234 4.500 5.587 4.500 6.000C4.500 6.413 4.647 6.766 4.941 7.059C5.234 7.353 5.587 7.500 6.000 7.500ZM6.000 15.000C3.987 13.287 2.484 11.697 1.491 10.228C0.497 8.759 0.000 7.400 0.000 6.150C0.000 4.275 0.603 2.781 1.809 1.669C3.016 0.556 4.413 0.000 6.000 0.000C7.587 0.000 8.984 0.556 10.191 1.669C11.397 2.781 12.000 4.275 12.000 6.150C12.000 7.400 11.503 8.759 10.509 10.228C9.516 11.697 8.013 13.287 6.000 15.000Z" />
+                  </svg>
+                  <span class="location-text">Fulton St Line A, 5:10PM</span>
+                </div>
+                <div class="card-social-context">Urban sketcher</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 9: Harris (right side lower) -->
+          <article class="network-card" id="card-9" data-id="card-9" data-author="Harris" data-topic="cookies" style="left: 1081px; top: 513px; width: 240px;">
+            <div class="card-inner">
+              <div class="card-top">
+                <h2 class="card-author">Harris</h2>
+                <p class="card-quote">Baked two dozen molten chocolate chip cookies. Giving them out to friendly commuters 🍪</p>
+              </div>
+              <div class="card-bottom">
+                <div class="card-location">
+                  <svg class="location-icon" viewBox="0 0 12 15" width="12" height="15" fill="#4299E1">
+                    <path d="M6.000 7.500C6.413 7.500 6.766 7.353 7.059 7.059C7.353 6.766 7.500 6.413 7.500 6.000C7.500 5.587 7.353 5.234 7.059 4.941C6.766 4.647 6.413 4.500 6.000 4.500C5.587 4.500 5.234 4.647 4.941 4.941C4.647 5.234 4.500 5.587 4.500 6.000C4.500 6.413 4.647 6.766 4.941 7.059C5.234 7.353 5.587 7.500 6.000 7.500ZM6.000 15.000C3.987 13.287 2.484 11.697 1.491 10.228C0.497 8.759 0.000 7.400 0.000 6.150C0.000 4.275 0.603 2.781 1.809 1.669C3.016 0.556 4.413 0.000 6.000 0.000C7.587 0.000 8.984 0.556 10.191 1.669C11.397 2.781 12.000 4.275 12.000 6.150C12.000 7.400 11.503 8.759 10.509 10.228C9.516 11.697 8.013 13.287 6.000 15.000Z" />
+                  </svg>
+                  <span class="location-text">Madison Square, 5:40PM</span>
+                </div>
+                <div class="card-social-context">Claire L.'s commuter pal</div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Drag Connection Dialog -->
+        <div id="connection-dialog" class="connection-dialog" style="display: none;">
+          <label for="dialog-reason-input" class="dialog-prompt">I'm making this connection because...</label>
+          <textarea id="dialog-reason-input" class="dialog-reason-input" rows="2" placeholder="Type your connection reason...">both of your thoughts on books seem to resonate</textarea>
+          <div class="dialog-actions">
+            <button id="dialog-connect-btn" class="dialog-btn-connect" type="button">Connect</button>
+          </div>
+        </div>
+
+        <!-- Hint / Instruction Text -->
+        <p class="canvas-instruction" id="drag-hint">
+          Click and drag cards on top of each other to form connections
+        </p>
+
+        <!-- Bottom Floating Bar ("Connections" bar) -->
+        <nav class="bottom-dock-bar" id="dock-bar">
+          <div class="dock-bar-inner">
+            <h1 class="dock-title">Connections</h1>
+            <div class="dock-actions">
+              <button class="dock-btn" id="btn-connect" type="button">Connect</button>
+              <button class="dock-btn" id="btn-share" type="button">Share</button>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Normal User Sharing Overlay Flow (Paper J6-0 -> NX-0 -> K5-0) -->
+        <div id="user-share-flow-overlay" class="user-share-flow-overlay" style="display: none;" aria-modal="true" role="dialog">
+          
+          <!-- Screen 1: J6-0 ("You have been invited by Kasie! Write a snippet about yourself:") -->
+          <div class="paper-share-screen active" id="share-step-j6">
+            <div class="paper-modal-card" id="card-j6">
+              <button class="paper-modal-close" id="btn-close-j6" type="button" aria-label="Close modal">&times;</button>
+              
+              <div class="paper-step-indicator">
+                <span class="step-pill active">Step 1 • Profile Snippet</span>
+                <span class="step-pill">Step 2 • Transit Snippet</span>
+              </div>
+
+              <h2 class="paper-modal-title">You have been invited by Kasie!</h2>
+              <p class="paper-modal-subtitle">Write a snippet about yourself:</p>
+              
+              <div class="paper-snippet-field-wrapper">
+                <textarea id="user-bio-snippet-input" class="paper-snippet-input" rows="3" placeholder="Write a snippet about yourself...">I tried to get into reading but it was a pain</textarea>
+              </div>
+
+              <div class="paper-modal-actions">
+                <button type="button" class="paper-btn-outline" id="btn-j6-later">Later</button>
+                <button type="button" class="paper-btn-purple" id="btn-j6-view-connections">View connections</button>
               </div>
             </div>
           </div>
-          <button class="card-action-bar">
-            <span>Account settings</span>
-            <span class="material-symbols-outlined">chevron_right</span>
-          </button>
-        </div>
 
-        <!-- How You Pay Card -->
-        <div class="card-group">
-          <div class="card inner-padded">
-            <div class="card-header-clean">
-              <h2 class="card-title">How you pay</h2>
-            </div>
-            <div class="how-you-pay-body">
-              <h3 class="plan-name">Postpay</h3>
-              <p class="plan-desc">
-                Pay as you go, so your services scale without interruptions. You have <strong>$1,485.90</strong> of your payment threshold available.
-              </p>
+          <!-- Screen 2: NX-0 ("Where did you go today? Share something about today...") -->
+          <div class="paper-share-screen" id="share-step-nx">
+            <div class="paper-modal-card" id="card-nx">
+              <button class="paper-modal-close" id="btn-close-nx" type="button" aria-label="Close modal">&times;</button>
+              
+              <div class="paper-step-indicator">
+                <span class="step-pill completed">✓ Step 1 Profile</span>
+                <span class="step-pill active">Step 2 • Today's Transit Snippet</span>
+              </div>
+
+              <h2 class="paper-modal-title">Where did you go today?</h2>
+              <p class="paper-modal-subtitle">Share something about today to help the connector make a connection.</p>
+              
+              <div class="transit-chips-row">
+                <button type="button" class="transit-chip active" data-transit="Manhattan Line A, 5:20PM">
+                  📍 Manhattan Line A, 5:20PM
+                </button>
+                <button type="button" class="transit-chip" data-transit="Madison Square, 6:00PM">
+                  📍 Madison Square, 6:00PM
+                </button>
+                <button type="button" class="transit-chip" data-transit="Brooklyn Line C, 4:45PM">
+                  📍 Brooklyn Line C, 4:45PM
+                </button>
+              </div>
+
+              <div class="paper-snippet-field-wrapper">
+                <textarea id="user-daily-snippet-input" class="paper-snippet-input" rows="3" placeholder="Share something about today...">I went to the bookstore to look for something new to read on my train commute...</textarea>
+              </div>
+
+              <div class="paper-modal-actions">
+                <button type="button" class="paper-btn-outline" id="btn-nx-back">Back</button>
+                <button type="button" class="paper-btn-purple" id="btn-nx-share">Share snippet</button>
+              </div>
             </div>
           </div>
-          <button class="card-action-bar">
-            <span>Switch plan</span>
-            <span class="material-symbols-outlined">chevron_right</span>
+
+          <!-- Screen 3: K5-0 ("You have added a snippet for today! Wait to be connected...") -->
+          <div class="paper-share-screen" id="share-step-k5">
+            <div class="paper-modal-card paper-k5-card" id="card-k5">
+              <button class="paper-modal-close" id="btn-close-k5" type="button" aria-label="Close modal">&times;</button>
+              
+              <div class="k5-status-header">
+                <span class="k5-check-badge">✓</span>
+                <h2 class="paper-modal-title">You have added a snippet for today!</h2>
+                <p class="k5-wait-text">Wait to be connected...</p>
+              </div>
+
+              <div class="k5-timeline-section">
+                <div class="k5-row live-row">
+                  <span class="k5-section-label">Live</span>
+                  <div class="k5-date-pill">Today</div>
+                  <div class="k5-line-divider"></div>
+                  <span class="k5-transit-name" id="k5-live-transit">Line A Manhattan</span>
+                  <div class="k5-snippet-pill" id="k5-live-snippet-text">I went to the bookstore...</div>
+                </div>
+
+                <div class="k5-row archive-row">
+                  <span class="k5-section-label">Archive</span>
+                  <div class="k5-date-pill">Sun Oct 9</div>
+                  <div class="k5-line-divider"></div>
+                  <span class="k5-transit-name">Line A Manhattan</span>
+                  <div class="k5-snippet-pill">I tried to get into reading...</div>
+                </div>
+
+                <div class="k5-row archive-row">
+                  <span class="k5-section-label invisible">Archive</span>
+                  <div class="k5-date-pill">Sun Oct 9</div>
+                  <div class="k5-line-divider"></div>
+                  <span class="k5-transit-name">Line A Manhattan</span>
+                  <div class="k5-snippet-pill">Today Harris hates me and will not buy me cookies...</div>
+                </div>
+              </div>
+
+              <div class="paper-modal-actions" style="margin-top: 24px;">
+                <button type="button" class="paper-btn-outline" id="btn-k5-edit">Edit snippet</button>
+                <button type="button" class="paper-btn-purple" id="btn-k5-return">Return to Matchmaker View</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Floating Reset / Zoom / Scale Controls -->
+        <div class="canvas-controls">
+          <button id="btn-zoom-in" class="control-btn" title="Zoom in">+</button>
+          <button id="btn-zoom-out" class="control-btn" title="Zoom out">−</button>
+          <button id="btn-zoom-fit" class="control-btn" title="Fit to screen">Fit</button>
+          <button id="btn-reset-layout" class="control-btn" title="Reset layout & pan">Reset</button>
+        </div>
+
+      </main>
+    </div>
+
+    <!-- ========================================================
+         TAB 2: PLAYFUL DAILY TAROT & TRANSIT MATCHMAKER CANVAS
+         ======================================================== -->
+    <div class="tab-panel" id="view-redesign" role="tabpanel">
+      <!-- Main Playful 1512x982 Canvas -->
+      <main class="artboard-canvas playful-canvas" id="canvas-playful">
+        
+        <!-- Graph Paper Grid Background (Daisy & Umi inspired) -->
+        <div class="playful-bg-grid"></div>
+
+        <!-- Sensory Aura Clouds (Humble Administrator's Garden Smell Map inspired) -->
+        <div class="sensory-auras-layer">
+          <div class="aura-cloud aura-lavender" style="left: 120px; top: 80px; width: 440px; height: 440px;"></div>
+          <div class="aura-cloud aura-peach" style="left: 1000px; top: 120px; width: 460px; height: 460px;"></div>
+          <div class="aura-cloud aura-amber" style="left: 640px; top: 90px; width: 380px; height: 380px;"></div>
+          <div class="aura-cloud aura-mint" style="left: 560px; top: 480px; width: 400px; height: 400px;"></div>
+        </div>
+
+        <!-- Whimsical Scrapbook Doodles & Stickers (Daisy & Umi inspired) -->
+        <div class="scrapbook-stickers-layer" aria-hidden="true">
+          <div class="sticker-doodle sticker-daisy" style="left: 90px; top: 380px;" title="Daisy flower">🌼</div>
+          <div class="sticker-doodle sticker-plane" style="left: 560px; top: 100px;" title="Paper airplane">✈️</div>
+          <div class="sticker-doodle sticker-cookie" style="left: 980px; top: 320px;" title="Fresh cookie">🍪</div>
+          <div class="sticker-doodle sticker-sparkle" style="left: 1420px; top: 460px;" title="Star sparkle">✨</div>
+          <div class="sticker-doodle sticker-coffee" style="left: 710px; top: 480px;" title="Morning coffee">☕</div>
+          <div class="sticker-doodle sticker-heart" style="left: 1140px; top: 720px;" title="Love spark">💖</div>
+          <div class="tape-strip tape-accent-1" style="left: 80px; top: 60px;"></div>
+          <div class="tape-strip tape-accent-2" style="left: 1390px; top: 600px;"></div>
+        </div>
+
+        <!-- Floating Top Matchmaker Banner -->
+        <div class="playful-top-banner">
+          <span class="banner-badge">🔮 Daily Tarot Matchmaker</span>
+          <span class="banner-text">Each commuter drew a <strong>Daily Tarot Card</strong> today. Drag people together to match them by Tarot synergy + Line A transit, then choose <strong>Platonic ☕</strong> or <strong>Romantic 💘</strong>!</span>
+        </div>
+
+        <!-- SVG Thread Layer for Ribbons & Connections -->
+        <svg id="playful-svg-layer" class="connections-layer" viewBox="0 0 1512 982" preserveAspectRatio="none">
+          <defs>
+            <!-- Romantic Glow Filter -->
+            <filter id="romantic-glow" x="-30%" y="-30%" width="160%" height="160%">
+              <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#FF5D8F" flood-opacity="0.45" />
+            </filter>
+            <!-- Platonic Glow Filter -->
+            <filter id="platonic-glow" x="-30%" y="-30%" width="160%" height="160%">
+              <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#EAA153" flood-opacity="0.4" />
+            </filter>
+            <!-- Gradients -->
+            <linearGradient id="grad-romantic" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FF5D8F" />
+              <stop offset="50%" stop-color="#FF8A65" />
+              <stop offset="100%" stop-color="#FF5252" />
+            </linearGradient>
+            <linearGradient id="grad-platonic" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#EAA153" />
+              <stop offset="50%" stop-color="#F4BF4F" />
+              <stop offset="100%" stop-color="#4EBA8A" />
+            </linearGradient>
+          </defs>
+
+          <!-- Pre-existing Initial Threads -->
+          <g id="playful-initial-threads">
+            <!-- Platonic Thread between Jackie and Claire -->
+            <path id="thread-1" d="M 290 280 C 420 220, 480 430, 430 520" fill="none" stroke="url(#grad-platonic)" stroke-width="4.5" stroke-linecap="round" stroke-dasharray="10 7" filter="url(#platonic-glow)" />
+            <!-- Romantic Thread between Claire L. and Harris -->
+            <path id="thread-2" d="M 1310 300 C 1180 260, 1140 480, 1180 570" fill="none" stroke="url(#grad-romantic)" stroke-width="4.5" stroke-linecap="round" filter="url(#romantic-glow)" />
+          </g>
+
+          <!-- Dynamic Threads drawn on drag -->
+          <g id="playful-dynamic-threads"></g>
+        </svg>
+
+        <!-- Initial Badges on Threads -->
+        <div class="playful-badge badge-platonic" style="left: 410px; top: 340px;">
+          <span class="vibe-icon">☕</span>
+          <span class="vibe-label">Platonic:</span> The Hermit ✕ The Star • Quiet Reading Club
+        </div>
+
+        <div class="playful-badge badge-romantic" style="left: 1110px; top: 380px;">
+          <span class="vibe-icon">💘</span>
+          <span class="vibe-label">Romantic:</span> The Empress ✕ The Magician • Cookie Chemistry
+        </div>
+
+        <!-- Cards Layer: Tactile Daily Tarot Commuter Cards -->
+        <div class="cards-layer" id="playful-cards-container">
+          
+          <!-- Card 1: Jackie (IX • The Hermit) -->
+          <article class="tarot-commuter-card is-active" id="pcard-jackie" data-id="pcard-jackie" data-author="Jackie" data-tarot="IX • The Hermit" data-vibe="reading" data-transit="Line A • 5:20PM" style="left: 140px; top: 80px; width: 270px;">
+            <div class="card-washi-tape washi-lavender"></div>
+            
+            <header class="tarot-card-top">
+              <span class="tarot-roman-title">IX • THE HERMIT</span>
+              <span class="tarot-tag tag-lavender">🌙 Quiet Lore</span>
+            </header>
+
+            <div class="tarot-artwork-wrapper">
+              <img class="tarot-art-img" src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=500&auto=format&fit=crop&q=80" alt="The Hermit Book Artwork" />
+              <div class="tarot-art-overlay"></div>
+              
+              <!-- Eshgruppa-inspired porthole avatar -->
+              <div class="commuter-porthole-avatar">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80" alt="Jackie" />
+                <span class="avatar-online-star">✦</span>
+              </div>
+              <div class="tarot-archetype-name">The Introspective Reader</div>
+            </div>
+
+            <div class="tarot-card-body">
+              <div class="commuter-meta-row">
+                <h2 class="commuter-name">Jackie</h2>
+                <span class="commuter-sub">LinkedIn mutual</span>
+              </div>
+              
+              <!-- Daily Drawn Manifestation Quote -->
+              <div class="tarot-daily-quote">
+                <span class="quote-sparkle">“</span>
+                <p class="quote-text">Seeking quiet kinship amidst the roaring Line A commute. Need a book buddy to share chapters with!</p>
+              </div>
+
+              <footer class="tarot-card-footer">
+                <span class="transit-badge">
+                  <span class="transit-pulse"></span> Line A • 5:20PM
+                </span>
+                <span class="match-drag-cue">Drag to read synergy ✨</span>
+              </footer>
+            </div>
+          </article>
+
+          <!-- Card 2: Claire (XVII • The Star) -->
+          <article class="tarot-commuter-card" id="pcard-claire-reader" data-id="pcard-claire-reader" data-author="Claire" data-tarot="XVII • The Star" data-vibe="reading" data-transit="Line A • 5:20PM" style="left: 300px; top: 480px; width: 270px;">
+            <div class="card-washi-tape washi-sky"></div>
+            
+            <header class="tarot-card-top">
+              <span class="tarot-roman-title">XVII • THE STAR</span>
+              <span class="tarot-tag tag-sky">🌟 Guiding Hope</span>
+            </header>
+
+            <div class="tarot-artwork-wrapper">
+              <img class="tarot-art-img" src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=500&auto=format&fit=crop&q=80" alt="The Star Artwork" />
+              <div class="tarot-art-overlay"></div>
+              
+              <div class="commuter-porthole-avatar">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=120&auto=format&fit=crop&q=80" alt="Claire" />
+                <span class="avatar-online-star">✦</span>
+              </div>
+              <div class="tarot-archetype-name">The Curious Explorer</div>
+            </div>
+
+            <div class="tarot-card-body">
+              <div class="commuter-meta-row">
+                <h2 class="commuter-name">Claire</h2>
+                <span class="commuter-sub">Manhattan commuter</span>
+              </div>
+              
+              <div class="tarot-daily-quote">
+                <span class="quote-sparkle">“</span>
+                <p class="quote-text">Today's card says: take a chance on a new story. Looking for book recommendations on Line A!</p>
+              </div>
+
+              <footer class="tarot-card-footer">
+                <span class="transit-badge">
+                  <span class="transit-pulse"></span> Line A • 5:20PM
+                </span>
+                <span class="match-drag-cue">Drag to read synergy ✨</span>
+              </footer>
+            </div>
+          </article>
+
+          <!-- Card 3: Claire L. (III • The Empress) -->
+          <article class="tarot-commuter-card" id="pcard-claire-cookies" data-id="pcard-claire-cookies" data-author="Claire L." data-tarot="III • The Empress" data-vibe="cookies" data-transit="Line A • 5:20PM" style="left: 1210px; top: 90px; width: 270px;">
+            <div class="card-washi-tape washi-strawberry"></div>
+            
+            <header class="tarot-card-top">
+              <span class="tarot-roman-title">III • THE EMPRESS</span>
+              <span class="tarot-tag tag-coral">🍪 Sweet Abundance</span>
+            </header>
+
+            <div class="tarot-artwork-wrapper">
+              <img class="tarot-art-img" src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=500&auto=format&fit=crop&q=80" alt="The Empress Cookie Artwork" />
+              <div class="tarot-art-overlay"></div>
+              
+              <div class="commuter-porthole-avatar">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=120&auto=format&fit=crop&q=80" alt="Claire L." />
+                <span class="avatar-online-star">✦</span>
+              </div>
+              <div class="tarot-archetype-name">The Connoisseur of Sweets</div>
+            </div>
+
+            <div class="tarot-card-body">
+              <div class="commuter-meta-row">
+                <h2 class="commuter-name">Claire L.</h2>
+                <span class="commuter-sub">Daily commuter</span>
+              </div>
+              
+              <div class="tarot-daily-quote coral-tint">
+                <span class="quote-sparkle">“</span>
+                <p class="quote-text">Today Harris hates me and will not buy me cookies : ( Manifesting fresh chocolate chip cookies!</p>
+              </div>
+
+              <footer class="tarot-card-footer">
+                <span class="transit-badge">
+                  <span class="transit-pulse"></span> Line A • 5:20PM
+                </span>
+                <span class="match-drag-cue">Drag to read synergy ✨</span>
+              </footer>
+            </div>
+          </article>
+
+          <!-- Card 4: Harris (I • The Magician) -->
+          <article class="tarot-commuter-card" id="pcard-harris" data-id="pcard-harris" data-author="Harris" data-tarot="I • The Magician" data-vibe="cookies" data-transit="Line A • 5:20PM" style="left: 1050px; top: 510px; width: 270px;">
+            <div class="card-washi-tape washi-mint"></div>
+            
+            <header class="tarot-card-top">
+              <span class="tarot-roman-title">I • THE MAGICIAN</span>
+              <span class="tarot-tag tag-mint">🧁 Pastry Alchemy</span>
+            </header>
+
+            <div class="tarot-artwork-wrapper">
+              <img class="tarot-art-img" src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=500&auto=format&fit=crop&q=80" alt="The Magician Baker Artwork" />
+              <div class="tarot-art-overlay"></div>
+              
+              <div class="commuter-porthole-avatar">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&auto=format&fit=crop&q=80" alt="Harris" />
+                <span class="avatar-online-star">✦</span>
+              </div>
+              <div class="tarot-archetype-name">The Pastry Magician</div>
+            </div>
+
+            <div class="tarot-card-body">
+              <div class="commuter-meta-row">
+                <h2 class="commuter-name">Harris</h2>
+                <span class="commuter-sub">Commutes with Claire</span>
+              </div>
+              
+              <div class="tarot-daily-quote mint-tint">
+                <span class="quote-sparkle">“</span>
+                <p class="quote-text">Baked 12 molten chocolate chunk cookies today. Who gets to taste the magic? 🍪</p>
+              </div>
+
+              <footer class="tarot-card-footer">
+                <span class="transit-badge">
+                  <span class="transit-pulse"></span> Line A • 5:20PM
+                </span>
+                <span class="match-drag-cue">Drag to read synergy ✨</span>
+              </footer>
+            </div>
+          </article>
+
+          <!-- Card 5: Leo (V • The Hierophant / The Alchemist) -->
+          <article class="tarot-commuter-card" id="pcard-leo" data-id="pcard-leo" data-author="Leo" data-tarot="V • The Hierophant" data-vibe="coffee" data-transit="Madison Sq • 6:00PM" style="left: 710px; top: 120px; width: 270px;">
+            <div class="card-washi-tape washi-honey"></div>
+            
+            <header class="tarot-card-top">
+              <span class="tarot-roman-title">V • THE HIEROPHANT</span>
+              <span class="tarot-tag tag-honey">☕ Coffee Ritual</span>
+            </header>
+
+            <div class="tarot-artwork-wrapper">
+              <img class="tarot-art-img" src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=500&auto=format&fit=crop&q=80" alt="The Hierophant Coffee Artwork" />
+              <div class="tarot-art-overlay"></div>
+              
+              <div class="commuter-porthole-avatar">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&auto=format&fit=crop&q=80" alt="Leo" />
+                <span class="avatar-online-star">✦</span>
+              </div>
+              <div class="tarot-archetype-name">The Pour-Over Craftsman</div>
+            </div>
+
+            <div class="tarot-card-body">
+              <div class="commuter-meta-row">
+                <h2 class="commuter-name">Leo</h2>
+                <span class="commuter-sub">Madison Sq regular</span>
+              </div>
+              
+              <div class="tarot-daily-quote honey-tint">
+                <span class="quote-sparkle">“</span>
+                <p class="quote-text">Geeking out over Ethiopian natural pour-overs. Looking for a partner to test new cafes around the park!</p>
+              </div>
+
+              <footer class="tarot-card-footer">
+                <span class="transit-badge">
+                  <span class="transit-pulse"></span> Madison Sq • 6:00PM
+                </span>
+                <span class="match-drag-cue">Drag to read synergy ✨</span>
+              </footer>
+            </div>
+          </article>
+
+          <!-- Card 6: Maya (XVIII • The Moon) -->
+          <article class="tarot-commuter-card" id="pcard-maya" data-id="pcard-maya" data-author="Maya" data-tarot="XVIII • The Moon" data-vibe="art" data-transit="Line A • 5:45PM" style="left: 630px; top: 540px; width: 270px;">
+            <div class="card-washi-tape washi-coral"></div>
+            
+            <header class="tarot-card-top">
+              <span class="tarot-roman-title">XVIII • THE MOON</span>
+              <span class="tarot-tag tag-lavender">🎨 Visual Intuition</span>
+            </header>
+
+            <div class="tarot-artwork-wrapper">
+              <img class="tarot-art-img" src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=500&auto=format&fit=crop&q=80" alt="The Moon Art Artwork" />
+              <div class="tarot-art-overlay"></div>
+              
+              <div class="commuter-porthole-avatar">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&auto=format&fit=crop&q=80" alt="Maya" />
+                <span class="avatar-online-star">✦</span>
+              </div>
+              <div class="tarot-archetype-name">The Secret Subway Artist</div>
+            </div>
+
+            <div class="tarot-card-body">
+              <div class="commuter-meta-row">
+                <h2 class="commuter-name">Maya</h2>
+                <span class="commuter-sub">Creative soul</span>
+              </div>
+              
+              <div class="tarot-daily-quote">
+                <span class="quote-sparkle">“</span>
+                <p class="quote-text">Secretly sketching people reading books on the train platform. Let's hang and swap creative notes!</p>
+              </div>
+
+              <footer class="tarot-card-footer">
+                <span class="transit-badge">
+                  <span class="transit-pulse"></span> Line A • 5:45PM
+                </span>
+                <span class="match-drag-cue">Drag to read synergy ✨</span>
+              </footer>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Playful Cosmic Tarot Matchmaker Connection Dialog -->
+        <div id="playful-match-dialog" class="playful-dialog cosmic-tarot-dialog" style="display: none;">
+          <button class="dialog-close-btn" id="playful-dialog-close" aria-label="Close dialog">&times;</button>
+          
+          <div class="dialog-tarot-synergy-header">
+            <span class="cosmic-header-spark">✦ COSMIC & COMMUTE CHEMISTRY ✦</span>
+            <h3 class="dialog-match-title" id="dialog-match-title">Jackie & Claire</h3>
+            
+            <!-- Dual Tarot Cards Comparison Showcase -->
+            <div class="dual-tarot-showcase">
+              
+              <!-- Tarot 1 -->
+              <div class="mini-tarot-preview" id="mini-tarot-1">
+                <div class="mini-tarot-art">
+                  <img id="dialog-tarot-img-1" src="" alt="Tarot 1" />
+                  <span class="mini-tarot-num" id="dialog-tarot-num-1">IX</span>
+                </div>
+                <div class="mini-tarot-meta">
+                  <span class="mini-person-name" id="dialog-name-1">Jackie</span>
+                  <span class="mini-tarot-name" id="dialog-tarot-name-1">The Hermit</span>
+                </div>
+              </div>
+
+              <!-- Center Synergy Capsule -->
+              <div class="cosmic-synergy-center">
+                <div class="synergy-score-pill" id="dialog-synergy-score">
+                  <span class="score-sparkle">✨</span>
+                  <span id="synergy-percent-text">98% Synergy</span>
+                </div>
+                <div class="synergy-connection-arc">
+                  <span class="connection-icon" id="couple-spark-icon">☕</span>
+                </div>
+                <div class="transit-synergy-pill" id="dialog-transit-synergy">
+                  📍 Line A (5:20PM)
+                </div>
+              </div>
+
+              <!-- Tarot 2 -->
+              <div class="mini-tarot-preview" id="mini-tarot-2">
+                <div class="mini-tarot-art">
+                  <img id="dialog-tarot-img-2" src="" alt="Tarot 2" />
+                  <span class="mini-tarot-num" id="dialog-tarot-num-2">XVII</span>
+                </div>
+                <div class="mini-tarot-meta">
+                  <span class="mini-person-name" id="dialog-name-2">Claire</span>
+                  <span class="mini-tarot-name" id="dialog-tarot-name-2">The Star</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Platonic vs Romantic Vibe Toggle -->
+          <div class="vibe-selector-row">
+            <button type="button" class="vibe-btn active" id="btn-vibe-platonic" data-vibe="platonic">
+              <span class="vibe-btn-emoji">☕</span>
+              <div class="vibe-btn-info">
+                <strong>Platonic</strong>
+                <span>Friends & Book Buddies</span>
+              </div>
+            </button>
+            <button type="button" class="vibe-btn" id="btn-vibe-romantic" data-vibe="romantic">
+              <span class="vibe-btn-emoji">💘</span>
+              <div class="vibe-btn-info">
+                <strong>Romantic</strong>
+                <span>Sparks & Chemistry</span>
+              </div>
+            </button>
+          </div>
+
+          <!-- Why are they connecting? Input Box with Tarot Inspiration -->
+          <div class="dialog-input-group">
+            <label for="playful-reason-input" class="dialog-input-label">
+              <span id="label-vibe-prompt">Your Matchmaker Reading (edit freely):</span>
+            </label>
+            <textarea id="playful-reason-input" class="playful-textarea" rows="3" placeholder="Type your personalized matchmaking reason...">The Hermit meets The Star! Jackie and Claire both pulled introspective book cards today and commute side-by-side on Line A. A quiet coffee chat and book recommendation will spark a lifelong friendship! ☕📖</textarea>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="button" id="playful-spark-btn" class="spark-match-btn">
+            Spark this Cosmic Connection! ✨
           </button>
         </div>
-      </div>
-    </div>
-  </main>
 
-  <!-- Footer -->
-  <footer class="g-footer">
-    <div class="footer-links">
-      <a href="#">Terms of Service</a>
-      <a href="#">Privacy Notice</a>
-      <a href="#">State Licenses</a>
-      <a href="#">Electronic Communications Policy</a>
-    </div>
-  </footer>
+        <!-- Bottom Playful Dock Bar (Daisy & Umi scrapbook aesthetic) -->
+        <nav class="bottom-dock-bar playful-dock" id="playful-dock-bar">
+          <div class="dock-bar-inner">
+            <div class="playful-dock-title">
+              <span class="dock-emoji">🔮☕💘</span>
+              <strong>Matchmaker Club</strong>
+            </div>
+            
+            <div class="dock-stats-pills">
+              <span class="stat-pill platonic">
+                ☕ <span id="stat-platonic-count">1</span> Platonic
+              </span>
+              <span class="stat-pill romantic">
+                💘 <span id="stat-romantic-count">1</span> Romantic
+              </span>
+            </div>
 
-  <!-- Interactive Payment Modal -->
-  <div class="modal-backdrop" id="payment-modal">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h3>Make a payment</h3>
-        <button class="icon-btn close-btn" id="close-modal">
-          <span class="material-symbols-outlined">close</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p class="modal-sub">Current outstanding balance: <strong>$984.10</strong></p>
-        <div class="input-field-group">
-          <label for="pay-amount">Payment amount ($)</label>
-          <input type="number" id="pay-amount" value="984.10" step="0.01">
+            <div class="dock-actions">
+              <button class="dock-btn playful-btn" id="btn-random-match" type="button">
+                🎲 Match a Pair!
+              </button>
+              <button class="dock-btn playful-btn" id="btn-shuffle-tarot" type="button">
+                🔮 Draw Daily Tarots
+              </button>
+              <button class="dock-btn playful-btn" id="btn-reset-playful" type="button">
+                🧹 Reset
+              </button>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Floating Fit / Zoom Controls -->
+        <div class="canvas-controls">
+          <button id="btn-playful-zoom-in" class="control-btn" title="Zoom in">+</button>
+          <button id="btn-playful-zoom-out" class="control-btn" title="Zoom out">−</button>
+          <button id="btn-playful-fit" class="control-btn" title="Fit to screen">Fit</button>
+          <button id="btn-reset-playful-pan" class="control-btn" title="Reset pan">Reset Pan</button>
         </div>
-        <div class="input-field-group">
-          <label>Payment method</label>
-          <div class="select-chip selected">Chase Sapphire Reserve® •••• 1234</div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="text-btn" id="cancel-payment">Cancel</button>
-        <button class="primary-btn" id="confirm-payment">Submit Payment</button>
-      </div>
+
+      </main>
     </div>
+
   </div>
+
+  <!-- Shared Toast Notification -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
   <script src="app.js"></script>
 </body>
