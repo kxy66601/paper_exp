@@ -1450,4 +1450,532 @@ body.space-pan-active.is-screen-panning * {
   box-shadow: 0 2px 8px rgba(103, 80, 164, 0.35);
 }
 
+/* ============================================================
+   Scientific Molecular Connection Formation Popup
+   (Solution Blending + Atomic Lattice Synthesis)
+   ============================================================ */
+
+.molecular-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1500;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.molecular-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.molecular-modal-card {
+  position: relative;
+  width: 580px;
+  max-width: 94vw;
+  background-color: #FAF8F5;
+  border-radius: 20px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  box-shadow: 0 24px 64px rgba(15, 23, 42, 0.24), 0 4px 16px rgba(0, 0, 0, 0.06);
+  padding: 28px 32px;
+  box-sizing: border-box;
+  transform: scale(0.92) translateY(14px);
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.molecular-overlay.active .molecular-modal-card {
+  transform: scale(1) translateY(0);
+}
+
+/* Top Header */
+.molecular-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.molecular-meta-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: #EBE6DC;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  padding: 3px 9px;
+  border-radius: 100px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #475569;
+  text-transform: uppercase;
+}
+
+.meta-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #10B981;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.8);
+  animation: pulseGreen 1.4s infinite alternate;
+}
+
+@keyframes pulseGreen {
+  0% { transform: scale(0.85); opacity: 0.6; }
+  100% { transform: scale(1.2); opacity: 1; }
+}
+
+.molecular-close-btn {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  line-height: 1;
+  color: #64748B;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 50%;
+  transition: all 0.15s ease;
+}
+
+.molecular-close-btn:hover {
+  background: #EAE5DB;
+  color: #0F172A;
+  transform: scale(1.05);
+}
+
+/* Title Block */
+.molecular-title-block {
+  margin-bottom: 14px;
+}
+
+.molecular-title {
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 32px;
+  color: #0F172A;
+  margin: 0 0 4px 0;
+  letter-spacing: -0.02em;
+}
+
+.molecular-subtitle {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: #64748B;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.formula-operator {
+  color: #F26500;
+  font-weight: 700;
+}
+
+.formula-arrow {
+  color: #64748B;
+}
+
+.formula-compound {
+  color: #0F172A;
+  font-weight: 700;
+  background: rgba(15, 23, 42, 0.06);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+/* Scientific Animation Stage */
+.molecular-stage {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  background: #FFFFFF;
+  border-radius: 14px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  overflow: hidden;
+  box-shadow: inset 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.molecular-grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle, rgba(15, 23, 42, 0.08) 1.2px, transparent 1.2px),
+    linear-gradient(rgba(15, 23, 42, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.02) 1px, transparent 1px);
+  background-size: 16px 16px, 16px 16px, 16px 16px;
+  pointer-events: none;
+}
+
+/* Gooey Solution Blending Container */
+.molecular-goo-container {
+  position: absolute;
+  inset: 0;
+  filter: url(#liquid-blend);
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.sol-droplet {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform, left, right;
+}
+
+.droplet-a {
+  width: 96px;
+  height: 96px;
+  top: 62px;
+  left: 102px;
+  background-color: #F26500;
+  opacity: 0.85;
+  animation: floatBlendA 3.4s ease-in-out infinite alternate;
+}
+
+.droplet-b {
+  width: 96px;
+  height: 96px;
+  top: 62px;
+  right: 102px;
+  background-color: #3B82F6;
+  opacity: 0.85;
+  animation: floatBlendB 3.4s ease-in-out infinite alternate;
+}
+
+.droplet-core {
+  width: 68px;
+  height: 68px;
+  top: 76px;
+  left: calc(50% - 34px);
+  background: linear-gradient(90deg, #F26500, #3B82F6);
+  opacity: 0.9;
+  animation: coreBlendWobble 3.4s ease-in-out infinite alternate;
+}
+
+@keyframes floatBlendA {
+  0% { transform: translate(0, 0) scale(0.94); }
+  50% { transform: translate(46px, -4px) scale(1.08, 0.94); }
+  100% { transform: translate(32px, 3px) scale(1.02); }
+}
+
+@keyframes floatBlendB {
+  0% { transform: translate(0, 0) scale(0.94); }
+  50% { transform: translate(-46px, 4px) scale(1.08, 0.94); }
+  100% { transform: translate(-32px, -3px) scale(1.02); }
+}
+
+@keyframes coreBlendWobble {
+  0% { transform: scale(0.4) rotate(0deg); opacity: 0.4; }
+  50% { transform: scale(1.24) rotate(15deg); opacity: 0.95; }
+  100% { transform: scale(1.05) rotate(-10deg); opacity: 0.85; }
+}
+
+/* Razor-sharp SVG Overlay (Orbitals, Bonds, Electrons) */
+.molecular-svg-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.orbital-ring {
+  stroke: rgba(15, 23, 42, 0.28);
+  stroke-width: 1.2px;
+  stroke-dasharray: 4 3;
+  fill: none;
+  transform-origin: center;
+}
+
+.orbital-group-left {
+  transform-origin: 150px 110px;
+  animation: spinSlowOrbital 14s linear infinite;
+}
+
+.orbital-group-right {
+  transform-origin: 370px 110px;
+  animation: spinSlowReverse 14s linear infinite;
+}
+
+@keyframes spinSlowOrbital {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spinSlowReverse {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+.orbital-electron {
+  fill: #0F172A;
+  stroke: #FFFFFF;
+  stroke-width: 1.5px;
+  filter: drop-shadow(0 0 5px rgba(56, 189, 248, 0.9));
+}
+
+.shared-valence-ring {
+  stroke: rgba(56, 189, 248, 0.4);
+  stroke-width: 1.5px;
+  stroke-dasharray: 6 4;
+  fill: none;
+  animation: sharedValencePulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes sharedValencePulse {
+  0% { stroke-opacity: 0.25; stroke-dashoffset: 0; }
+  100% { stroke-opacity: 0.85; stroke-dashoffset: 30; }
+}
+
+/* Covalent Bond Lines */
+.covalent-bond-line {
+  stroke: #0F172A;
+  stroke-linecap: round;
+}
+
+.covalent-bond-line.bond-primary {
+  stroke-width: 2.5px;
+  stroke: url(#bond-energy-grad);
+  stroke-dasharray: 240;
+  stroke-dashoffset: 240;
+  animation: drawCovalentBond 0.8s 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.covalent-bond-line.bond-parallel-top,
+.covalent-bond-line.bond-parallel-bot {
+  stroke-width: 1px;
+  stroke: #94A3B8;
+  stroke-dasharray: 4 3;
+  opacity: 0.6;
+}
+
+@keyframes drawCovalentBond {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.center-reaction-pulse {
+  stroke: #38BDF8;
+  stroke-width: 2px;
+  fill: none;
+  transform-origin: 260px 110px;
+  animation: pingReaction 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes pingReaction {
+  0% { transform: scale(0.6); opacity: 0.9; }
+  75%, 100% { transform: scale(2.2); opacity: 0; }
+}
+
+.sci-coord-text {
+  font-size: 8px;
+  letter-spacing: 0.08em;
+  fill: #94A3B8;
+  font-weight: 600;
+}
+
+.sci-bond-dist-text {
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  fill: #0F172A;
+  font-weight: 700;
+}
+
+/* HTML Nuclei Nodes */
+.molecular-nucleus {
+  position: absolute;
+  top: 110px;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+  pointer-events: none;
+  width: 90px;
+}
+
+.nucleus-left {
+  left: 150px;
+}
+
+.nucleus-right {
+  left: 370px;
+}
+
+.nucleus-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #0F172A;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Fraunces", serif;
+  font-size: 18px;
+  font-weight: 600;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.22);
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.2s ease;
+}
+
+.nucleus-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0F172A;
+  margin-top: 5px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.nucleus-tag {
+  font-size: 8.5px;
+  color: #64748B;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-top: 1px;
+  white-space: nowrap;
+}
+
+/* Center Pill Badge */
+.molecular-center-pill {
+  position: absolute;
+  top: 110px;
+  left: 260px;
+  transform: translate(-50%, -50%);
+  background: #0F172A;
+  color: #F8FAFC;
+  padding: 4px 10px;
+  border-radius: 100px;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.28);
+  z-index: 12;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  animation: popPillIn 0.5s 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes popPillIn {
+  from { transform: translate(-50%, -50%) scale(0.6); opacity: 0; }
+  to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+.pill-spark {
+  color: #F59E0B;
+  font-size: 9px;
+}
+
+/* Scientific Specs Block */
+.molecular-specs-block {
+  background: #F3EFE6;
+  border-radius: 10px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  padding: 12px 16px;
+  margin-top: 14px;
+}
+
+.spec-row {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed rgba(15, 23, 42, 0.1);
+}
+
+.spec-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.spec-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.spec-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #64748B;
+  text-transform: uppercase;
+}
+
+.spec-value {
+  font-size: 13px;
+  font-weight: 500;
+  color: #1E293B;
+  line-height: 18px;
+}
+
+.spec-val {
+  font-size: 11px;
+  font-weight: 600;
+  color: #0F172A;
+  letter-spacing: 0.02em;
+}
+
+.text-emerald {
+  color: #059669 !important;
+}
+
+/* Footer Action */
+.molecular-footer {
+  margin-top: 16px;
+}
+
+.molecular-btn-view {
+  width: 100%;
+  height: 44px;
+  border-radius: 12px;
+  background-color: #0F172A;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.18);
+  transition: all 0.2s ease;
+}
+
+.molecular-btn-view:hover {
+  background-color: #1E293B;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.26);
+}
+
+.molecular-btn-view:active {
+  transform: translateY(1px);
+}
+
+.btn-arrow {
+  transition: transform 0.15s ease;
+}
+
+.molecular-btn-view:hover .btn-arrow {
+  transform: translateX(3px);
+}
+
+
 

@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=ADLaM+Display&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Fredoka:wght@400;500;600;700&family=Indie+Flower&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Irish+Grover&family=League+Gothic&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Supermercado+One&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=white-cards-1">
+  <link rel="stylesheet" href="style.css?v=molecular-synthesis-1">
 </head>
 <body>
   <!-- Main Viewport Container -->
@@ -540,6 +540,156 @@
   <!-- Shared Toast Notification -->
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-  <script src="app.js?v=white-cards-1"></script>
+  <!-- ========================================================
+       Scientific Molecular Connection Popup Modal
+       ======================================================== -->
+  <div id="molecular-popup-overlay" class="molecular-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="molecular-title">
+    <div class="molecular-modal-card">
+      
+      <!-- Top Lab Header / Spec Tag & Close -->
+      <div class="molecular-header">
+        <div class="molecular-meta-tag font-space-mono">
+          <span class="meta-pulse-dot"></span>
+          <span class="meta-label">MOLECULAR SYNTHESIS // LAB SPEC-01</span>
+        </div>
+        <button id="molecular-close-btn" class="molecular-close-btn" aria-label="Close dialog">&times;</button>
+      </div>
+
+      <!-- Main Scientific Title & Chemical Formula / Pair -->
+      <div class="molecular-title-block">
+        <h3 class="molecular-title font-fraunces" id="molecular-title">New Connection Formed</h3>
+        <p class="molecular-subtitle font-space-mono" id="molecular-subtitle">
+          <span id="formula-user-a">Jackie</span> <span class="formula-operator">⊕</span> <span id="formula-user-b">Claire</span>
+          <span class="formula-arrow">→</span> <span class="formula-compound" id="formula-compound">Covalent Solution Blend</span>
+        </p>
+      </div>
+
+      <!-- Scientific Stage: Solution Blending & Molecular Lattice -->
+      <div class="molecular-stage" id="molecular-stage">
+        <!-- Subtle scientific grid background -->
+        <div class="molecular-grid-bg" aria-hidden="true"></div>
+
+        <!-- Organic Solution Blending Droplets (Liquid Metaballs via SVG filter) -->
+        <div class="molecular-goo-container" aria-hidden="true">
+          <div class="sol-droplet droplet-a" id="droplet-a"></div>
+          <div class="sol-droplet droplet-b" id="droplet-b"></div>
+          <div class="sol-droplet droplet-core" id="droplet-core"></div>
+        </div>
+
+        <!-- SVG Orbital Lattice, Covalent Bonds & Micro Particles -->
+        <svg class="molecular-svg-overlay" viewBox="0 0 520 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <defs>
+            <linearGradient id="bond-energy-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#F26500" stop-opacity="0.9" />
+              <stop offset="50%" stop-color="#3B82F6" stop-opacity="0.9" />
+              <stop offset="100%" stop-color="#10B981" stop-opacity="0.9" />
+            </linearGradient>
+            <radialGradient id="spark-radial" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#FFFFFF" />
+              <stop offset="60%" stop-color="#38BDF8" stop-opacity="0.7" />
+              <stop offset="100%" stop-color="#38BDF8" stop-opacity="0" />
+            </radialGradient>
+          </defs>
+
+          <!-- Left Orbital Rings (Atom A) -->
+          <g class="orbital-group orbital-group-left">
+            <ellipse class="orbital-ring ring-1" cx="150" cy="110" rx="68" ry="24" transform="rotate(-25 150 110)" />
+            <ellipse class="orbital-ring ring-2" cx="150" cy="110" rx="68" ry="24" transform="rotate(35 150 110)" />
+            <circle class="orbital-electron electron-1" cx="150" cy="110" r="3.5" />
+          </g>
+
+          <!-- Right Orbital Rings (Atom B) -->
+          <g class="orbital-group orbital-group-right">
+            <ellipse class="orbital-ring ring-3" cx="370" cy="110" rx="68" ry="24" transform="rotate(25 370 110)" />
+            <ellipse class="orbital-ring ring-4" cx="370" cy="110" rx="68" ry="24" transform="rotate(-35 370 110)" />
+            <circle class="orbital-electron electron-2" cx="370" cy="110" r="3.5" />
+          </g>
+
+          <!-- Shared Intersecting Valence Rings (Figure-8 orbital bridge) -->
+          <ellipse class="shared-valence-ring" cx="260" cy="110" rx="130" ry="48" />
+
+          <!-- Covalent Molecular Bond Lines -->
+          <line class="covalent-bond-line bond-primary" x1="150" y1="110" x2="370" y2="110" />
+          <line class="covalent-bond-line bond-parallel-top" x1="175" y1="104" x2="345" y2="104" />
+          <line class="covalent-bond-line bond-parallel-bot" x1="175" y1="116" x2="345" y2="116" />
+
+          <!-- Center Reaction Core Flash & Ring Pulse -->
+          <circle class="center-reaction-pulse" cx="260" cy="110" r="28" />
+          <circle class="center-spark-core" cx="260" cy="110" r="7" fill="url(#spark-radial)" />
+
+          <!-- Scientific Coordinate Markers & Annotations -->
+          <text x="150" y="196" class="sci-coord-text font-space-mono" text-anchor="middle">NODE_α [VALENCE: 2e⁻]</text>
+          <text x="370" y="196" class="sci-coord-text font-space-mono" text-anchor="middle">NODE_β [VALENCE: 2e⁻]</text>
+          <text x="260" y="66" class="sci-bond-dist-text font-space-mono" text-anchor="middle">σ-BOND · 1.34 Å EQUILIBRIUM</text>
+        </svg>
+
+        <!-- HTML Nuclei Nodes for User A and User B (Crisp Avatars & Names) -->
+        <div class="molecular-nucleus nucleus-left" id="nucleus-a">
+          <div class="nucleus-avatar-glow"></div>
+          <div class="nucleus-avatar" id="nucleus-avatar-a">J</div>
+          <div class="nucleus-name font-instrument-sans" id="nucleus-name-a">Jackie</div>
+          <div class="nucleus-tag font-space-mono" id="nucleus-tag-a">MANHATTAN NY</div>
+        </div>
+
+        <!-- Center Bond Formula Capsule -->
+        <div class="molecular-center-pill font-space-mono">
+          <span class="pill-spark">✦</span>
+          <span id="center-bond-type">COVALENT BOND</span>
+        </div>
+
+        <div class="molecular-nucleus nucleus-right" id="nucleus-b">
+          <div class="nucleus-avatar-glow"></div>
+          <div class="nucleus-avatar" id="nucleus-avatar-b">C</div>
+          <div class="nucleus-name font-instrument-sans" id="nucleus-name-b">Claire</div>
+          <div class="nucleus-tag font-space-mono" id="nucleus-tag-b">MANHATTAN NY</div>
+        </div>
+      </div>
+
+      <!-- Scientific Readout Specs Block -->
+      <div class="molecular-specs-block">
+        <div class="spec-row">
+          <span class="spec-label font-space-mono">SYNTHESIS REASON</span>
+          <span class="spec-value font-inter" id="spec-reason-text">Why are you creating this connection?</span>
+        </div>
+        <div class="spec-grid">
+          <div class="spec-cell">
+            <span class="spec-label font-space-mono">TRANSIT CORRIDOR</span>
+            <span class="spec-val font-space-mono" id="spec-transit-corridor">SHARED SPACE: MANHATTAN NY</span>
+          </div>
+          <div class="spec-cell">
+            <span class="spec-label font-space-mono">REACTION STABILITY</span>
+            <span class="spec-val font-space-mono text-emerald">99.8% BOND HARMONY</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Footer -->
+      <div class="molecular-footer">
+        <button type="button" class="molecular-btn-view font-inter" id="molecular-btn-view">
+          <span>Explore Connection</span>
+          <span class="btn-arrow">→</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SVG Global Gooey Filter for Liquid Solution Blending -->
+  <svg class="svg-filters" style="position: absolute; width: 0; height: 0; pointer-events: none;" aria-hidden="true">
+    <defs>
+      <filter id="liquid-blend">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
+        <feColorMatrix in="blur" mode="matrix" values="
+          1 0 0 0 0
+          0 1 0 0 0
+          0 0 1 0 0
+          0 0 0 24 -9
+        " result="goo" />
+        <feBlend in="SourceGraphic" in2="goo" />
+      </filter>
+    </defs>
+  </svg>
+
+  <script src="app.js?v=molecular-synthesis-1"></script>
 </body>
 </html>

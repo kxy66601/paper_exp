@@ -406,12 +406,16 @@ document.addEventListener('DOMContentLoaded', () => {
   dialogConnectBtn.addEventListener('click', () => {
     if (!pendingConnection) return;
 
+    const source = pendingConnection.source;
+    const target = pendingConnection.target;
     const customReason = dialogReasonInput ? dialogReasonInput.value.trim() : '';
 
-    createConnectionCurve(pendingConnection.source, pendingConnection.target, customReason);
+    const connData = createConnectionCurve(source, target, customReason);
     dialog.style.display = 'none';
-    showToast(`Connected ${pendingConnection.source.dataset.author} and ${pendingConnection.target.dataset.author}`);
     pendingConnection = null;
+
+    // Show the scientific molecular connection formation pop-up!
+    showMolecularConnectionPopup(source, target, customReason, connData);
   });
 
   // Close dialog when clicking outside
@@ -473,6 +477,161 @@ document.addEventListener('DOMContentLoaded', () => {
       badge.innerHTML = `<span class="badge-prefix">✦</span> Connected: ${escapeHtml(a1)} &amp; ${escapeHtml(a2)}`;
     }
     canvas.appendChild(badge);
+
+    return { path, badge, midX, midY, c1, c2 };
+  }
+
+  // ============================================================
+  // Scientific Molecular Connection Popup Handling
+  // ============================================================
+  const molecularOverlay = document.getElementById('molecular-popup-overlay');
+  const molecularCloseBtn = document.getElementById('molecular-close-btn');
+  const molecularBtnView = document.getElementById('molecular-btn-view');
+  let activeConnectionData = null;
+
+  const userColorMap = {
+    'Jackie': { primary: '#F26500', light: '#FFD2B2' },
+    'Claire L.': { primary: '#F26500', light: '#FFD2B2' },
+    'Maya': { primary: '#3B82F6', light: '#D4E6FF' },
+    'Julian': { primary: '#475569', light: '#CBD5E1' },
+    'Devon': { primary: '#D772E0', light: '#FFEBFB' },
+    'Sora': { primary: '#F97316', light: '#FFDDC1' },
+    'Elena': { primary: '#EC4899', light: '#FFEFFC' },
+    'Marcus': { primary: '#475569', light: '#E2E8F0' },
+    'Harris': { primary: '#B45309', light: '#FEF3C7' },
+    'Nina': { primary: '#8B5CF6', light: '#EDE9FE' },
+    'Mateo': { primary: '#EA580C', light: '#FFEDD5' },
+    'Chloe': { primary: '#0EA5E9', light: '#E0F2FE' },
+    'Tariq': { primary: '#10B981', light: '#DCFCE7' },
+    'Zoe': { primary: '#EAB308', light: '#FEF08A' },
+    'Lucas': { primary: '#6366F1', light: '#E0E7FF' }
+  };
+
+  function showMolecularConnectionPopup(c1, c2, reasonText, connectionData) {
+    if (!molecularOverlay) return;
+    activeConnectionData = connectionData;
+
+    const authorA = c1.dataset.author || c1.querySelector('.card-author')?.textContent.trim() || 'Commuter A';
+    const authorB = c2.dataset.author || c2.querySelector('.card-author')?.textContent.trim() || 'Commuter B';
+    
+    const locElA = c1.querySelector('.location-text');
+    const locElB = c2.querySelector('.location-text');
+    const locationA = locElA ? locElA.textContent.trim() : 'MANHATTAN NY';
+    const locationB = locElB ? locElB.textContent.trim() : 'MANHATTAN NY';
+
+    const colorA = userColorMap[authorA] || { primary: '#F26500', light: '#FFD2B2' };
+    const colorB = userColorMap[authorB] || { primary: '#3B82F6', light: '#D4E6FF' };
+
+    // Update names & formula
+    const formulaUserA = document.getElementById('formula-user-a');
+    const formulaUserB = document.getElementById('formula-user-b');
+    const formulaCompound = document.getElementById('formula-compound');
+    if (formulaUserA) formulaUserA.textContent = authorA;
+    if (formulaUserB) formulaUserB.textContent = authorB;
+    if (formulaCompound) formulaCompound.textContent = `${authorA.split(' ')[0]}·${authorB.split(' ')[0]} Solution Blend`;
+
+    // Update Nuclei
+    const nNameA = document.getElementById('nucleus-name-a');
+    const nNameB = document.getElementById('nucleus-name-b');
+    const nTagA = document.getElementById('nucleus-tag-a');
+    const nTagB = document.getElementById('nucleus-tag-b');
+    const nAvatarA = document.getElementById('nucleus-avatar-a');
+    const nAvatarB = document.getElementById('nucleus-avatar-b');
+
+    if (nNameA) nNameA.textContent = authorA;
+    if (nNameB) nNameB.textContent = authorB;
+    if (nTagA) nTagA.textContent = locationA;
+    if (nTagB) nTagB.textContent = locationB;
+
+    // Check for image avatars
+    const avatarImgA = c1.querySelector('.card-avatar');
+    const avatarImgB = c2.querySelector('.card-avatar');
+    if (nAvatarA) {
+      if (avatarImgA && avatarImgA.style.backgroundImage && avatarImgA.style.backgroundImage !== 'none') {
+        nAvatarA.style.backgroundImage = avatarImgA.style.backgroundImage;
+        nAvatarA.textContent = '';
+      } else {
+        nAvatarA.style.backgroundImage = 'none';
+        nAvatarA.style.backgroundColor = colorA.primary;
+        nAvatarA.textContent = authorA.charAt(0);
+      }
+    }
+    if (nAvatarB) {
+      if (avatarImgB && avatarImgB.style.backgroundImage && avatarImgB.style.backgroundImage !== 'none') {
+        nAvatarB.style.backgroundImage = avatarImgB.style.backgroundImage;
+        nAvatarB.textContent = '';
+      } else {
+        nAvatarB.style.backgroundImage = 'none';
+        nAvatarB.style.backgroundColor = colorB.primary;
+        nAvatarB.textContent = authorB.charAt(0);
+      }
+    }
+
+    // Update Droplet Solution Blending Colors
+    const dropletA = document.getElementById('droplet-a');
+    const dropletB = document.getElementById('droplet-b');
+    const dropletCore = document.getElementById('droplet-core');
+    if (dropletA) dropletA.style.backgroundColor = colorA.primary;
+    if (dropletB) dropletB.style.backgroundColor = colorB.primary;
+    if (dropletCore) dropletCore.style.background = `linear-gradient(90deg, ${colorA.primary}, ${colorB.primary})`;
+
+    // Update Scientific Readout Specs
+    const specReason = document.getElementById('spec-reason-text');
+    const specCorridor = document.getElementById('spec-transit-corridor');
+    if (specReason) {
+      specReason.textContent = reasonText || `Shared transit resonance discovered between ${authorA} and ${authorB}.`;
+    }
+    if (specCorridor) {
+      specCorridor.textContent = `${locationA.toUpperCase()} ⇄ ${locationB.toUpperCase()}`;
+    }
+
+    // Trigger Popup & Animation
+    molecularOverlay.style.display = 'flex';
+    void molecularOverlay.offsetWidth;
+    molecularOverlay.classList.add('active');
+  }
+
+  function closeMolecularPopup() {
+    if (!molecularOverlay) return;
+    molecularOverlay.classList.remove('active');
+    setTimeout(() => {
+      molecularOverlay.style.display = 'none';
+    }, 320);
+  }
+
+  if (molecularCloseBtn) {
+    molecularCloseBtn.addEventListener('click', closeMolecularPopup);
+  }
+
+  if (molecularOverlay) {
+    molecularOverlay.addEventListener('click', (e) => {
+      if (e.target === molecularOverlay) {
+        closeMolecularPopup();
+      }
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && molecularOverlay && molecularOverlay.classList.contains('active')) {
+      closeMolecularPopup();
+    }
+  });
+
+  if (molecularBtnView) {
+    molecularBtnView.addEventListener('click', () => {
+      closeMolecularPopup();
+      if (activeConnectionData && activeConnectionData.path) {
+        const p = activeConnectionData.path;
+        p.style.stroke = '#38BDF8';
+        p.style.strokeWidth = '4';
+        p.style.filter = 'drop-shadow(0 0 8px rgba(56, 189, 248, 0.8))';
+        setTimeout(() => {
+          p.style.stroke = '#0F172A';
+          p.style.strokeWidth = '2';
+          p.style.filter = 'url(#arc-shadow)';
+        }, 1800);
+      }
+    });
   }
 
   function createAnchorDot(x, y) {
