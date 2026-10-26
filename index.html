@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=ADLaM+Display&family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Fredoka:wght@400;500;600;700&family=Indie+Flower&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Irish+Grover&family=League+Gothic&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Supermercado+One&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=simple-blend-2">
+  <link rel="stylesheet" href="style.css?v=inline-hint-2">
 </head>
 <body>
   <!-- Main Viewport Container -->
@@ -382,9 +382,46 @@
 
       </main>
 
-      <!-- Floating Instruction Hint (Fixed to Viewport, does not move on canvas pan/drag) -->
-      <div class="canvas-instruction font-supermercado" id="drag-hint">
-        Drag snippets together to form a connection
+      <!-- Floating Bottom Instruction & Connection Dock (Replaces hint text on connection) -->
+      <div class="canvas-instruction-container" id="bottom-instruction-dock">
+        <!-- Default State: Drag Hint Text -->
+        <div class="canvas-instruction font-supermercado" id="drag-hint">
+          Drag snippets together to form a connection
+        </div>
+
+        <!-- Connected State: Inline Solution Blending Animation (Replaces Drag Hint in this location) -->
+        <div class="inline-connection-display" id="inline-connection-display" style="display: none;" role="status">
+          <!-- Animation Stage: Solutions Blending Together -->
+          <div class="inline-anim-stage" id="inline-anim-stage">
+            <div class="inline-goo-container" aria-hidden="true">
+              <div class="inline-droplet droplet-a" id="inline-droplet-a"></div>
+              <div class="inline-droplet droplet-b" id="inline-droplet-b"></div>
+              <div class="inline-droplet droplet-core" id="inline-droplet-core"></div>
+            </div>
+
+            <!-- SVG Vector Connection Line & Pulse -->
+            <svg class="inline-svg-overlay" viewBox="0 0 180 44" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+              <ellipse class="inline-orbital-ring ring-left" cx="48" cy="22" rx="22" ry="10" transform="rotate(-10 48 22)" />
+              <ellipse class="inline-orbital-ring ring-right" cx="132" cy="22" rx="22" ry="10" transform="rotate(10 132 22)" />
+              <line class="inline-connect-line" x1="48" y1="22" x2="132" y2="22" />
+              <circle class="inline-center-pulse" cx="90" cy="22" r="7" />
+              <circle class="inline-center-dot" cx="90" cy="22" r="2.5" />
+            </svg>
+          </div>
+
+          <!-- Clean Commuter Names & Reason Meta (No profile pictures, no match %, no covalent bond text) -->
+          <div class="inline-connection-meta">
+            <div class="inline-connection-names font-inter">
+              <span id="inline-name-a">Jackie</span>
+              <span class="inline-names-separator">&amp;</span>
+              <span id="inline-name-b">Claire L.</span>
+            </div>
+            <div class="inline-connection-reason font-inter" id="inline-connection-reason" style="display: none;"></div>
+          </div>
+
+          <!-- Subtle Dismiss Button -->
+          <button type="button" class="inline-dismiss-btn" id="inline-dismiss-btn" title="Dismiss" aria-label="Dismiss">&times;</button>
+        </div>
       </div>
 
       <!-- Floating Reset / Zoom / Scale Controls (Specific to Canvas view) -->
@@ -540,94 +577,22 @@
   <!-- Shared Toast Notification -->
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-  <!-- ========================================================
-       Scientific Molecular Connection Popup Modal
-       ======================================================== -->
-  <!-- ========================================================
-       Simple Molecular / Solution Blend Connection Pop-up
-       ======================================================== -->
-  <div id="molecular-popup-overlay" class="molecular-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="molecular-title">
-    <div class="molecular-modal-card simple-popup-card">
-      
-      <!-- Top Header & Close -->
-      <div class="molecular-header">
-        <div class="modal-title-group">
-          <h3 class="molecular-title font-fraunces" id="molecular-title">New Connection Formed</h3>
-          <p class="molecular-subtitle font-inter" id="molecular-subtitle">
-            <span id="formula-user-a">Jackie</span> &amp; <span id="formula-user-b">Claire L.</span>
-          </p>
-        </div>
-        <button id="molecular-close-btn" class="molecular-close-btn" aria-label="Close dialog">&times;</button>
-      </div>
-
-      <!-- Minimalist Animation Stage: Solutions Blending Together -->
-      <div class="molecular-stage simple-stage" id="molecular-stage">
-        
-        <!-- Liquid Solution Blending Droplets -->
-        <div class="molecular-goo-container" aria-hidden="true">
-          <div class="sol-droplet droplet-a" id="droplet-a"></div>
-          <div class="sol-droplet droplet-b" id="droplet-b"></div>
-          <div class="sol-droplet droplet-core" id="droplet-core"></div>
-        </div>
-
-        <!-- Clean, Minimal SVG Connection & Soft Orbitals -->
-        <svg class="molecular-svg-overlay" viewBox="0 0 480 180" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-          <!-- Minimalist orbital curves -->
-          <ellipse class="simple-orbital-ring ring-left" cx="140" cy="85" rx="58" ry="24" transform="rotate(-15 140 85)" />
-          <ellipse class="simple-orbital-ring ring-right" cx="340" cy="85" rx="58" ry="24" transform="rotate(15 340 85)" />
-
-          <!-- Shared gentle connecting line -->
-          <line class="simple-connect-line" x1="140" y1="85" x2="340" y2="85" />
-
-          <!-- Center pulse aura -->
-          <circle class="simple-center-pulse" cx="240" cy="85" r="16" />
-          <circle class="simple-center-dot" cx="240" cy="85" r="3.5" />
-        </svg>
-
-        <!-- Clean Name Labels (No profile pictures) -->
-        <div class="simple-node-label node-label-left">
-          <span class="node-name font-inter" id="nucleus-name-a">Jackie</span>
-          <span class="node-location" id="nucleus-tag-a">Manhattan NY</span>
-        </div>
-
-        <div class="simple-node-label node-label-right">
-          <span class="node-name font-inter" id="nucleus-name-b">Claire L.</span>
-          <span class="node-location" id="nucleus-tag-b">Manhattan NY</span>
-        </div>
-      </div>
-
-      <!-- Clean Reason Quote Box -->
-      <div class="molecular-reason-card" id="molecular-reason-card">
-        <p class="reason-quote font-inter" id="spec-reason-text">Why are you creating this connection?</p>
-      </div>
-
-      <!-- Action Footer -->
-      <div class="molecular-footer">
-        <button type="button" class="molecular-btn-view font-inter" id="molecular-btn-view">
-          <span>Explore Connection</span>
-          <span class="btn-arrow">→</span>
-        </button>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- SVG Global Gooey Filter for Liquid Solution Blending -->
+  <!-- SVG Filters for Liquid Solution Blending -->
   <svg class="svg-filters" style="position: absolute; width: 0; height: 0; pointer-events: none;" aria-hidden="true">
     <defs>
-      <filter id="liquid-blend">
-        <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
+      <filter id="inline-liquid-blend">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
         <feColorMatrix in="blur" mode="matrix" values="
           1 0 0 0 0
           0 1 0 0 0
           0 0 1 0 0
-          0 0 0 24 -9
+          0 0 0 19 -8
         " result="goo" />
         <feBlend in="SourceGraphic" in2="goo" />
       </filter>
     </defs>
   </svg>
 
-  <script src="app.js?v=simple-blend-2"></script>
+  <script src="app.js?v=inline-hint-2"></script>
 </body>
 </html>

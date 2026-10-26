@@ -272,6 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   cards.forEach(card => {
     card.addEventListener('pointerdown', (e) => {
+      hideInlineConnection();
       // Don't drag card if space-panning or middle click
       if (isSpacePressed || e.button === 1) return;
 
@@ -414,8 +415,8 @@ document.addEventListener('DOMContentLoaded', () => {
     dialog.style.display = 'none';
     pendingConnection = null;
 
-    // Show the scientific molecular connection formation pop-up!
-    showMolecularConnectionPopup(source, target, customReason, connData);
+    // Show inline solution blending connection animation in bottom HUD
+    showInlineConnection(source, target, customReason, connData);
   });
 
   // Close dialog when clicking outside
@@ -482,12 +483,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ============================================================
-  // Scientific Molecular Connection Popup Handling
+  // Inline Connection HUD Display (Replaces Drag Hint Text)
   // ============================================================
-  const molecularOverlay = document.getElementById('molecular-popup-overlay');
-  const molecularCloseBtn = document.getElementById('molecular-close-btn');
-  const molecularBtnView = document.getElementById('molecular-btn-view');
-  let activeConnectionData = null;
+  const inlineDisplay = document.getElementById('inline-connection-display');
+  const inlineDismissBtn = document.getElementById('inline-dismiss-btn');
+  const dragHint = document.getElementById('drag-hint');
+  let inlineDismissTimer = null;
 
   const userColorMap = {
     'Jackie': { primary: '#F26500', light: '#FFD2B2' },
@@ -507,99 +508,107 @@ document.addEventListener('DOMContentLoaded', () => {
     'Lucas': { primary: '#6366F1', light: '#E0E7FF' }
   };
 
-  function showMolecularConnectionPopup(c1, c2, reasonText, connectionData) {
-    if (!molecularOverlay) return;
-    activeConnectionData = connectionData;
+  function showInlineConnection(c1, c2, reasonText, connectionData) {
+    if (!inlineDisplay) return;
+
+    if (inlineDismissTimer) {
+      clearTimeout(inlineDismissTimer);
+      inlineDismissTimer = null;
+    }
 
     const authorA = c1.dataset.author || c1.querySelector('.card-author')?.textContent.trim() || 'Commuter A';
     const authorB = c2.dataset.author || c2.querySelector('.card-author')?.textContent.trim() || 'Commuter B';
-    
-    const locElA = c1.querySelector('.location-text');
-    const locElB = c2.querySelector('.location-text');
-    const locationA = locElA ? locElA.textContent.trim() : 'MANHATTAN NY';
-    const locationB = locElB ? locElB.textContent.trim() : 'MANHATTAN NY';
 
     const colorA = userColorMap[authorA] || { primary: '#F26500', light: '#FFD2B2' };
     const colorB = userColorMap[authorB] || { primary: '#3B82F6', light: '#D4E6FF' };
 
-    // Update names in header
-    const formulaUserA = document.getElementById('formula-user-a');
-    const formulaUserB = document.getElementById('formula-user-b');
-    if (formulaUserA) formulaUserA.textContent = authorA;
-    if (formulaUserB) formulaUserB.textContent = authorB;
+    // Update names
+    const nameAEl = document.getElementById('inline-name-a');
+    const nameBEl = document.getElementById('inline-name-b');
+    if (nameAEl) nameAEl.textContent = authorA;
+    if (nameBEl) nameBEl.textContent = authorB;
 
-    // Update Node Names & Locations underneath (NO profile pictures)
-    const nNameA = document.getElementById('nucleus-name-a');
-    const nNameB = document.getElementById('nucleus-name-b');
-    const nTagA = document.getElementById('nucleus-tag-a');
-    const nTagB = document.getElementById('nucleus-tag-b');
+    // Update optional reason
+    const reasonEl = document.getElementById('inline-connection-reason');
+    if (reasonEl) {
+      if (reasonText && reasonText.trim()) {
+        reasonEl.textContent = `“${reasonText.trim()}”`;
+        reasonEl.style.display = 'block';
+      } else {
+        reasonEl.style.display = 'none';
+      }
+    }
 
-    if (nNameA) nNameA.textContent = authorA;
-    if (nNameB) nNameB.textContent = authorB;
-    if (nTagA) nTagA.textContent = locationA;
-    if (nTagB) nTagB.textContent = locationB;
-
-    // Update Simple Solution Blending Colors
-    const dropletA = document.getElementById('droplet-a');
-    const dropletB = document.getElementById('droplet-b');
-    const dropletCore = document.getElementById('droplet-core');
+    // Update Droplet Colors
+    const dropletA = document.getElementById('inline-droplet-a');
+    const dropletB = document.getElementById('inline-droplet-b');
+    const dropletCore = document.getElementById('inline-droplet-core');
     if (dropletA) dropletA.style.backgroundColor = colorA.primary;
     if (dropletB) dropletB.style.backgroundColor = colorB.primary;
     if (dropletCore) dropletCore.style.background = `linear-gradient(90deg, ${colorA.primary}, ${colorB.primary})`;
 
-    // Update Clean Reason Quote
-    const specReason = document.getElementById('spec-reason-text');
-    if (specReason) {
-      specReason.textContent = reasonText ? `“${reasonText}”` : `“Connected ${authorA} and ${authorB} in shared space.”`;
+    // Replay SVG Line animation
+    const connLine = inlineDisplay.querySelector('.inline-connect-line');
+    if (connLine) {
+      connLine.style.animation = 'none';
+      void connLine.offsetWidth;
+      connLine.style.animation = '';
     }
 
-    // Trigger Popup & Animation
-    molecularOverlay.style.display = 'flex';
-    void molecularOverlay.offsetWidth;
-    molecularOverlay.classList.add('active');
+    // Replace the hint text in that location
+    if (dragHint) dragHint.classList.add('is-hidden');
+    inlineDisplay.style.display = 'flex';
+    void inlineDisplay.offsetWidth;
+    inlineDisplay.classList.add('active');
+
+    // Subtle glow highlight on newly formed connection line
+    if (connectionData && connectionData.path) {
+      const p = connectionData.path;
+      p.style.stroke = '#38BDF8';
+      p.style.strokeWidth = '3.5';
+      setTimeout(() => {
+        p.style.stroke = '#0F172A';
+        p.style.strokeWidth = '2';
+      }, 1500);
+    }
+
+    // Auto-dismiss after 10 seconds to restore hint text if untouched
+    inlineDismissTimer = setTimeout(() => {
+      hideInlineConnection();
+    }, 10000);
   }
 
-  function closeMolecularPopup() {
-    if (!molecularOverlay) return;
-    molecularOverlay.classList.remove('active');
+  function hideInlineConnection() {
+    if (inlineDismissTimer) {
+      clearTimeout(inlineDismissTimer);
+      inlineDismissTimer = null;
+    }
+    if (inlineDisplay && inlineDisplay.classList.contains('active')) {
+      inlineDisplay.classList.remove('active');
+      setTimeout(() => {
+        inlineDisplay.style.display = 'none';
+        if (dragHint) dragHint.classList.remove('is-hidden');
+      }, 250);
+    } else if (dragHint) {
+      dragHint.classList.remove('is-hidden');
+    }
+  }
+
+  if (inlineDismissBtn) {
+    inlineDismissBtn.addEventListener('click', hideInlineConnection);
+  }
+
+  window.showInlineConnection = showInlineConnection;
+  window.hideInlineConnection = hideInlineConnection;
+
+  if (window.location.search.includes('test_inline_hud')) {
     setTimeout(() => {
-      molecularOverlay.style.display = 'none';
-    }, 320);
-  }
-
-  if (molecularCloseBtn) {
-    molecularCloseBtn.addEventListener('click', closeMolecularPopup);
-  }
-
-  if (molecularOverlay) {
-    molecularOverlay.addEventListener('click', (e) => {
-      if (e.target === molecularOverlay) {
-        closeMolecularPopup();
+      const cardJackie = document.querySelector('.card-jackie');
+      const cardClaire = document.querySelector('.card-claire');
+      if (cardJackie && cardClaire) {
+        showInlineConnection(cardJackie, cardClaire, 'Exploring design museums together in Manhattan');
       }
-    });
-  }
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && molecularOverlay && molecularOverlay.classList.contains('active')) {
-      closeMolecularPopup();
-    }
-  });
-
-  if (molecularBtnView) {
-    molecularBtnView.addEventListener('click', () => {
-      closeMolecularPopup();
-      if (activeConnectionData && activeConnectionData.path) {
-        const p = activeConnectionData.path;
-        p.style.stroke = '#38BDF8';
-        p.style.strokeWidth = '4';
-        p.style.filter = 'drop-shadow(0 0 8px rgba(56, 189, 248, 0.8))';
-        setTimeout(() => {
-          p.style.stroke = '#0F172A';
-          p.style.strokeWidth = '2';
-          p.style.filter = 'url(#arc-shadow)';
-        }, 1800);
-      }
-    });
+    }, 400);
   }
 
   function createAnchorDot(x, y) {

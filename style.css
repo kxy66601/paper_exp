@@ -760,28 +760,252 @@ body.space-pan-active.is-screen-panning * {
   transform: translateY(0);
 }
 
-/* Instruction Text (1QL-0) - Floating HUD */
-.canvas-instruction {
+/* Instruction Text & Inline Connection Dock - Floating HUD */
+.canvas-instruction-container {
   position: fixed;
-  bottom: 94px;
+  bottom: 86px;
   left: 50%;
   transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 90;
+  pointer-events: none;
+}
+
+.canvas-instruction {
   color: #0F172A;
   font-family: "Supermercado One", system-ui, sans-serif;
   font-size: 18px;
   letter-spacing: -0.01em;
   line-height: 22px;
-  pointer-events: none;
-  z-index: 90;
   background: transparent;
   border: none;
   box-shadow: none;
-  backdrop-filter: none;
   padding: 0;
   white-space: nowrap;
   user-select: none;
   text-shadow: 0 1px 2px rgba(255, 249, 236, 0.9), 0 0 8px rgba(255, 249, 236, 0.7);
-  transition: opacity 0.2s ease;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+}
+
+.canvas-instruction.is-hidden {
+  opacity: 0 !important;
+  transform: translateY(6px) !important;
+  pointer-events: none !important;
+  display: none !important;
+}
+
+/* Inline Connection Display (Replaces Drag Hint in that exact location) */
+.inline-connection-display {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: rgba(255, 254, 252, 0.96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.04);
+  padding: 8px 34px 9px 24px;
+  min-width: 240px;
+  max-width: 380px;
+  box-sizing: border-box;
+  pointer-events: auto;
+  opacity: 0;
+  transform: translateY(8px) scale(0.96);
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.inline-connection-display.active {
+  display: flex !important;
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+}
+
+/* Animation Stage in Inline Dock */
+.inline-anim-stage {
+  position: relative;
+  width: 170px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2px;
+}
+
+/* Gooey Container */
+.inline-goo-container {
+  position: absolute;
+  inset: 0;
+  filter: url(#inline-liquid-blend);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.inline-droplet {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.inline-droplet.droplet-a {
+  width: 24px;
+  height: 24px;
+  background-color: #F26500;
+  opacity: 0.88;
+  animation: inlineFloatBlendA 2.6s ease-in-out infinite alternate;
+}
+
+.inline-droplet.droplet-b {
+  width: 24px;
+  height: 24px;
+  background-color: #3B82F6;
+  opacity: 0.88;
+  animation: inlineFloatBlendB 2.6s ease-in-out infinite alternate;
+}
+
+.inline-droplet.droplet-core {
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(90deg, #F26500, #3B82F6);
+  opacity: 0.92;
+  animation: inlineCoreBlendWobble 2.6s ease-in-out infinite alternate;
+}
+
+@keyframes inlineFloatBlendA {
+  0% { transform: translate(-28px, 0) scale(0.95); }
+  50% { transform: translate(12px, -1px) scale(1.08, 0.92); }
+  100% { transform: translate(6px, 1px) scale(1.02); }
+}
+
+@keyframes inlineFloatBlendB {
+  0% { transform: translate(28px, 0) scale(0.95); }
+  50% { transform: translate(-12px, 1px) scale(1.08, 0.92); }
+  100% { transform: translate(-6px, -1px) scale(1.02); }
+}
+
+@keyframes inlineCoreBlendWobble {
+  0% { transform: scale(0.3) rotate(0deg); opacity: 0.3; }
+  50% { transform: scale(1.18) rotate(10deg); opacity: 0.95; }
+  100% { transform: scale(1.02) rotate(-6deg); opacity: 0.88; }
+}
+
+/* SVG Line & Dots */
+.inline-svg-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.inline-orbital-ring {
+  stroke: rgba(15, 23, 42, 0.12);
+  stroke-width: 1px;
+  stroke-dasharray: 3 2;
+  fill: none;
+}
+
+.inline-connect-line {
+  stroke: #0F172A;
+  stroke-width: 1.8px;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: drawInlineLine 0.6s 0.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes drawInlineLine {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.inline-center-pulse {
+  stroke: #38BDF8;
+  stroke-width: 1.2px;
+  fill: none;
+  transform-origin: 90px 22px;
+  animation: inlinePulse 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes inlinePulse {
+  0% { transform: scale(0.4); opacity: 0.9; }
+  75%, 100% { transform: scale(2.2); opacity: 0; }
+}
+
+.inline-center-dot {
+  fill: #0F172A;
+}
+
+/* Inline Names Meta */
+.inline-connection-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2px;
+  user-select: none;
+}
+
+.inline-connection-names {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0F172A;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.inline-names-separator {
+  color: #94A3B8;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.inline-connection-reason {
+  font-size: 11.5px;
+  font-style: italic;
+  color: #64748B;
+  max-width: 280px;
+  line-height: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Inline Dismiss Button */
+.inline-dismiss-btn {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: #94A3B8;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  padding: 0;
+}
+
+.inline-dismiss-btn:hover {
+  background: rgba(15, 23, 42, 0.08);
+  color: #0F172A;
 }
 
 /* ============================================================
@@ -1450,308 +1674,7 @@ body.space-pan-active.is-screen-panning * {
   box-shadow: 0 2px 8px rgba(103, 80, 164, 0.35);
 }
 
-/* ============================================================
-   Simple Solution Blend / Connection Formation Pop-up
-   ============================================================ */
 
-.molecular-overlay {
-  position: fixed;
-  inset: 0;
-  background-color: rgba(15, 23, 42, 0.4);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1500;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-.molecular-overlay.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.molecular-modal-card.simple-popup-card {
-  position: relative;
-  width: 480px;
-  max-width: 92vw;
-  background-color: #FAF8F5;
-  border-radius: 20px;
-  border: 1px solid rgba(15, 23, 42, 0.1);
-  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.18), 0 2px 8px rgba(0, 0, 0, 0.04);
-  padding: 24px 28px;
-  box-sizing: border-box;
-  transform: scale(0.94) translateY(10px);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.molecular-overlay.active .molecular-modal-card.simple-popup-card {
-  transform: scale(1) translateY(0);
-}
-
-/* Header */
-.molecular-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 12px;
-}
-
-.modal-title-group {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.molecular-title {
-  font-size: 22px;
-  font-weight: 500;
-  line-height: 28px;
-  color: #0F172A;
-  margin: 0;
-  letter-spacing: -0.01em;
-}
-
-.molecular-subtitle {
-  font-size: 13px;
-  color: #64748B;
-  margin: 0;
-  font-weight: 500;
-}
-
-.molecular-close-btn {
-  background: transparent;
-  border: none;
-  font-size: 22px;
-  line-height: 1;
-  color: #94A3B8;
-  cursor: pointer;
-  padding: 4px 6px;
-  border-radius: 50%;
-  transition: all 0.15s ease;
-}
-
-.molecular-close-btn:hover {
-  background: #EAE5DB;
-  color: #0F172A;
-}
-
-/* Simple Animation Stage: Solutions Blending */
-.molecular-stage.simple-stage {
-  position: relative;
-  width: 100%;
-  height: 170px;
-  background: #FFFFFF;
-  border-radius: 14px;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  overflow: hidden;
-  box-shadow: inset 0 2px 6px rgba(15, 23, 42, 0.03);
-}
-
-/* Gooey Solution Blending Container */
-.molecular-goo-container {
-  position: absolute;
-  inset: 0;
-  filter: url(#liquid-blend);
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.sol-droplet {
-  position: absolute;
-  border-radius: 50%;
-  will-change: transform;
-}
-
-.droplet-a {
-  width: 80px;
-  height: 80px;
-  top: 45px;
-  left: 95px;
-  background-color: #F26500;
-  opacity: 0.85;
-  animation: floatBlendA 3s ease-in-out infinite alternate;
-}
-
-.droplet-b {
-  width: 80px;
-  height: 80px;
-  top: 45px;
-  right: 95px;
-  background-color: #3B82F6;
-  opacity: 0.85;
-  animation: floatBlendB 3s ease-in-out infinite alternate;
-}
-
-.droplet-core {
-  width: 54px;
-  height: 54px;
-  top: 58px;
-  left: calc(50% - 27px);
-  background: linear-gradient(90deg, #F26500, #3B82F6);
-  opacity: 0.9;
-  animation: coreBlendWobble 3s ease-in-out infinite alternate;
-}
-
-@keyframes floatBlendA {
-  0% { transform: translate(0, 0) scale(0.95); }
-  50% { transform: translate(40px, -3px) scale(1.06, 0.94); }
-  100% { transform: translate(28px, 2px) scale(1.01); }
-}
-
-@keyframes floatBlendB {
-  0% { transform: translate(0, 0) scale(0.95); }
-  50% { transform: translate(-40px, 3px) scale(1.06, 0.94); }
-  100% { transform: translate(-28px, -2px) scale(1.01); }
-}
-
-@keyframes coreBlendWobble {
-  0% { transform: scale(0.4) rotate(0deg); opacity: 0.4; }
-  50% { transform: scale(1.22) rotate(12deg); opacity: 0.95; }
-  100% { transform: scale(1.04) rotate(-8deg); opacity: 0.85; }
-}
-
-/* SVG Minimalist Overlay */
-.molecular-svg-overlay {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 5;
-}
-
-.simple-orbital-ring {
-  stroke: rgba(15, 23, 42, 0.12);
-  stroke-width: 1.2px;
-  stroke-dasharray: 4 3;
-  fill: none;
-}
-
-.simple-connect-line {
-  stroke: #0F172A;
-  stroke-width: 2px;
-  stroke-linecap: round;
-  stroke-dasharray: 200;
-  stroke-dashoffset: 200;
-  animation: drawSimpleLine 0.7s 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes drawSimpleLine {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-.simple-center-pulse {
-  stroke: #38BDF8;
-  stroke-width: 1.5px;
-  fill: none;
-  transform-origin: 240px 85px;
-  animation: simplePing 2s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-
-@keyframes simplePing {
-  0% { transform: scale(0.5); opacity: 0.9; }
-  75%, 100% { transform: scale(2.2); opacity: 0; }
-}
-
-.simple-center-dot {
-  fill: #0F172A;
-}
-
-/* Node Labels Underneath (No Profile Pictures) */
-.simple-node-label {
-  position: absolute;
-  bottom: 12px;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  pointer-events: none;
-  z-index: 10;
-}
-
-.node-label-left {
-  left: 140px;
-}
-
-.node-label-right {
-  left: 340px;
-}
-
-.node-name {
-  font-size: 13px;
-  font-weight: 600;
-  color: #0F172A;
-  white-space: nowrap;
-}
-
-.node-location {
-  font-size: 9px;
-  color: #64748B;
-  font-weight: 500;
-  margin-top: 1px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  white-space: nowrap;
-}
-
-/* Reason Quote Box (Clean and Minimal) */
-.molecular-reason-card {
-  background: #F4EFE6;
-  border-radius: 10px;
-  border: 1px solid rgba(15, 23, 42, 0.06);
-  padding: 12px 16px;
-  margin-top: 14px;
-}
-
-.reason-quote {
-  font-size: 13px;
-  color: #334155;
-  line-height: 19px;
-  margin: 0;
-  font-style: italic;
-  font-weight: 400;
-}
-
-/* Footer Action */
-.molecular-footer {
-  margin-top: 16px;
-}
-
-.molecular-btn-view {
-  width: 100%;
-  height: 42px;
-  border-radius: 12px;
-  background-color: #0F172A;
-  color: #FFFFFF;
-  font-size: 13.5px;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.16);
-  transition: all 0.2s ease;
-}
-
-.molecular-btn-view:hover {
-  background-color: #1E293B;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.22);
-}
-
-.molecular-btn-view:active {
-  transform: translateY(1px);
-}
 
 
 
