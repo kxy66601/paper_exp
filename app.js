@@ -522,52 +522,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const colorA = userColorMap[authorA] || { primary: '#F26500', light: '#FFD2B2' };
     const colorB = userColorMap[authorB] || { primary: '#3B82F6', light: '#D4E6FF' };
 
-    // Update names & formula
+    // Update names in header
     const formulaUserA = document.getElementById('formula-user-a');
     const formulaUserB = document.getElementById('formula-user-b');
-    const formulaCompound = document.getElementById('formula-compound');
     if (formulaUserA) formulaUserA.textContent = authorA;
     if (formulaUserB) formulaUserB.textContent = authorB;
-    if (formulaCompound) formulaCompound.textContent = `${authorA.split(' ')[0]}·${authorB.split(' ')[0]} Solution Blend`;
 
-    // Update Nuclei
+    // Update Node Names & Locations underneath (NO profile pictures)
     const nNameA = document.getElementById('nucleus-name-a');
     const nNameB = document.getElementById('nucleus-name-b');
     const nTagA = document.getElementById('nucleus-tag-a');
     const nTagB = document.getElementById('nucleus-tag-b');
-    const nAvatarA = document.getElementById('nucleus-avatar-a');
-    const nAvatarB = document.getElementById('nucleus-avatar-b');
 
     if (nNameA) nNameA.textContent = authorA;
     if (nNameB) nNameB.textContent = authorB;
     if (nTagA) nTagA.textContent = locationA;
     if (nTagB) nTagB.textContent = locationB;
 
-    // Check for image avatars
-    const avatarImgA = c1.querySelector('.card-avatar');
-    const avatarImgB = c2.querySelector('.card-avatar');
-    if (nAvatarA) {
-      if (avatarImgA && avatarImgA.style.backgroundImage && avatarImgA.style.backgroundImage !== 'none') {
-        nAvatarA.style.backgroundImage = avatarImgA.style.backgroundImage;
-        nAvatarA.textContent = '';
-      } else {
-        nAvatarA.style.backgroundImage = 'none';
-        nAvatarA.style.backgroundColor = colorA.primary;
-        nAvatarA.textContent = authorA.charAt(0);
-      }
-    }
-    if (nAvatarB) {
-      if (avatarImgB && avatarImgB.style.backgroundImage && avatarImgB.style.backgroundImage !== 'none') {
-        nAvatarB.style.backgroundImage = avatarImgB.style.backgroundImage;
-        nAvatarB.textContent = '';
-      } else {
-        nAvatarB.style.backgroundImage = 'none';
-        nAvatarB.style.backgroundColor = colorB.primary;
-        nAvatarB.textContent = authorB.charAt(0);
-      }
-    }
-
-    // Update Droplet Solution Blending Colors
+    // Update Simple Solution Blending Colors
     const dropletA = document.getElementById('droplet-a');
     const dropletB = document.getElementById('droplet-b');
     const dropletCore = document.getElementById('droplet-core');
@@ -575,14 +547,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (dropletB) dropletB.style.backgroundColor = colorB.primary;
     if (dropletCore) dropletCore.style.background = `linear-gradient(90deg, ${colorA.primary}, ${colorB.primary})`;
 
-    // Update Scientific Readout Specs
+    // Update Clean Reason Quote
     const specReason = document.getElementById('spec-reason-text');
-    const specCorridor = document.getElementById('spec-transit-corridor');
     if (specReason) {
-      specReason.textContent = reasonText || `Shared transit resonance discovered between ${authorA} and ${authorB}.`;
-    }
-    if (specCorridor) {
-      specCorridor.textContent = `${locationA.toUpperCase()} ⇄ ${locationB.toUpperCase()}`;
+      specReason.textContent = reasonText ? `“${reasonText}”` : `“Connected ${authorA} and ${authorB} in shared space.”`;
     }
 
     // Trigger Popup & Animation
